@@ -33,3 +33,27 @@ def search_papers():
     return query
 
 
+################################################################################
+'''
+Error Handeler
+'''
+################################################################################
+
+@app.errorhandler(status.HTTP_404_NOT_FOUND)
+def error_handler_404(error):
+    return jsonify({
+        'code' : status.HTTP_404_NOT_FOUND,
+        'message' : 'Page not found'
+        }), status.HTTP_404_NOT_FOUND
+
+@app.errorhandler(422)
+def error_handler_422(error):
+    return jsonify({'code' : 422,
+        'message' : 'Unprocessable Entity',
+        }), 422
+
+@app.errorhandler(status.HTTP_500_INTERNAL_SERVER_ERROR)
+def error_handler_500(error):
+    return jsonify({'code' : status.HTTP_500_INTERNAL_SERVER_ERROR,
+        'message' : 'Server Side Error',
+        }), status.HTTP_500_INTERNAL_SERVER_ERROR
