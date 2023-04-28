@@ -31,7 +31,6 @@ class vector_database:
         for faster search 
         Note : it is loaded to the VDB cloud memory not to server memory 
         Call it after connecting to the VDB and before searching
-        and store the returned to use it in search 
         """
         self.papers_collection = Collection("research_papers")     
         self.papers_collection.load()
@@ -43,7 +42,6 @@ class vector_database:
         for faster search
         Note : it is loaded to the VDB cloud memory not to server memory 
         Call it after connecting to the VDB and before searching 
-        and store the returned to use it in search 
         """
         self.videos_collection = Collection("youtube_videos")     
         self.videos_collection.load()
