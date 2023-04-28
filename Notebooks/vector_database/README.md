@@ -1,1 +1,1 @@
-# vectordatabase defenetion
+# Vector database
