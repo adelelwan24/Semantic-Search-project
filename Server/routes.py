@@ -14,8 +14,6 @@ userCreationSchema = UserCreationSchema()
 userLoginSchema = UserLoginSchema()
 
 
-    
-
 @app.route('/')
 @app.route('/home')
 def home():
@@ -88,7 +86,6 @@ Search
 '''
 ################################################################################
 
-
 @app.route('/apis/videos/search', methods=['post'])
 def search_video():
     query = request.form['query']
@@ -109,4 +106,3 @@ def search_papers():
     processed_query = Pre_Process(query)
     results = Search_VDB(processed_query)
     return query
-

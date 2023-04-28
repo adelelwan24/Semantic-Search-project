@@ -5,6 +5,7 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 from sqlalchemy.sql.expression import text
 
+
 class User(db.Model):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True, nullable=False)
@@ -20,6 +21,5 @@ class User(db.Model):
     @password.setter
     def password(self, palin_txt_password):
         self.password_hash = bcrypt.generate_password_hash(palin_txt_password).decode('Utf-8')
-
 
 

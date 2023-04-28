@@ -33,7 +33,7 @@ class UserCreationSchema(Schema):
             raise ValidationError('Password must contain uupper case')
         if not any(c.islower() for c in value):
             raise ValidationError('Password must contain lower case')
-    
+            
 class UserLoginSchema(Schema):
     password = fields.Str(required=True)
     email_address = fields.Str(required=True)
