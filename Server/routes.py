@@ -46,15 +46,12 @@ def create_user():
     try:
         db.session.add(user)
         db.session.commit()
-        db.reflect(user)
-    except TypeError as e:
-        Exception_Info()
     except SQLAlchemyError as exe:
         db.session.rollback()
         Exception_Info()
         raise exe
 
-    return jsonify(data), status.HTTP_201_CREATED
+    return jsonify(userSchema.dump(user)), status.HTTP_201_CREATED
 
 @app.route('/users/login', methods=['post'])
 def login_user():
@@ -64,19 +61,28 @@ def login_user():
         abort(status.HTTP_404_NOT_FOUND, "Email Doesn't Exist")
     if user and bcrypt.check_password_hash(user.password_hash, data['password']):
         return jsonify({'messege' : 'Successfully Logged In'})
-    abort(status.HTTP_401_UNAUTHORIZED)
     abort(status.HTTP_401_UNAUTHORIZED, "Password Is Invalid")
     
 
 @app.route('/users/<int:id>', methods= ['delete'])
 def delete_user(id):
-    user = User.query.filter(User.id == id).one_or_none()
-    if not user:
+    user_query = User.query.filter(User.id == id)
+    if not user_query.one_or_none():
         abort(status.HTTP_404_NOT_FOUND, "User Doesn't Exist")
+    
+    try:
+        user = user_query.first()
+        db.session.delete(user)
+        db.session.commit()
+    except SQLAlchemyError as exe:
+        db.session.rollback()
+        Exception_Info()
+        raise exe
+    except Exception as exe:
+        db.session.rollback()
+        Exception_Info()
+        raise exe
 
-    db.session.delete(user)
-    db.session.commit()
-    db.reflect(user)
     return jsonify(userSchema.dump(user)), status.HTTP_204_NO_CONTENT
 
 
@@ -88,10 +94,10 @@ Search
 
 @app.route('/apis/videos/search', methods=['post'])
 def search_video():
-    query = request.form['query']
+    query = request.json['query']
     print(query)
-    processed_query = Pre_Process(query)
-    results = Search_VDB(processed_query)
+    # processed_query = Pre_Process(query)
+    # results = Search_VDB(processed_query)
     return query
 
 
@@ -103,6 +109,8 @@ def search_papers():
     else:
         query = request.form['query']
     print(query)
-    processed_query = Pre_Process(query)
-    results = Search_VDB(processed_query)
+    # processed_query = Pre_Process(query)
+    # results = Search_VDB(processed_query)
     return query
+
+from Server.error_handlers import *
