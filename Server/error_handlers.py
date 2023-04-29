@@ -6,26 +6,34 @@ from sqlalchemy.exc import SQLAlchemyError
 
 
 @app.errorhandler(ValidationError)
-def handle_invalid_data_format(V_Error):
+def handle_invalid_data_format(VALIDATION_ERROR):
     return jsonify({
         'code' : status.HTTP_400_BAD_REQUEST,
         'message' : f"Data Validation Error",
-        'error': V_Error.__dict__['messages']
+        'error': VALIDATION_ERROR.__dict__['messages']
         }), status.HTTP_400_BAD_REQUEST
 
 @app.errorhandler(SQLAlchemyError)
-def error_exception(SQL_Error):
+def sqlalchemy_error_exception(SQL_ERROR):
     return jsonify({
         'code' : 422,
-        'message' : f"SQLAlchemy Error: {type(SQL_Error)}",
-        'error': str(SQL_Error.__dict__['orig'])
+        'message' : f"SQLAlchemy Error: {type(SQL_ERROR)}",
+        'error': str(SQL_ERROR._sql_message())
         }), 422
+
+@app.errorhandler(Exception)
+def error_exception(EXE):
+    return jsonify({
+        'code' : status.HTTP_500_INTERNAL_SERVER_ERROR,
+        'message' : f"Exception: {type(EXE)}",
+        'error': str(EXE)
+        }), status.HTTP_500_INTERNAL_SERVER_ERROR
 
 @app.errorhandler(status.HTTP_404_NOT_FOUND)
 def error_handler_404(error):
     return jsonify({
         'code' : status.HTTP_404_NOT_FOUND,
-        'message' : 'Page not found',
+        'message' : 'Resource Not Found',
         'error' : str(error)
         }), status.HTTP_404_NOT_FOUND
 
