@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 from dotenv import load_dotenv
@@ -18,6 +19,7 @@ db = SQLAlchemy(app)
 CORS(app)
 Marshmallow(app)
 bcrypt = Bcrypt(app)
+migrate = Migrate(app, db)
 
 # @app.after_request
 # def after_request(response):
