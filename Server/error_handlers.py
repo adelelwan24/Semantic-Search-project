@@ -21,13 +21,6 @@ def sqlalchemy_error_exception(SQL_ERROR):
         'error': str(SQL_ERROR._sql_message())
         }), 422
 
-@app.errorhandler(Exception)
-def error_exception(EXE):
-    return jsonify({
-        'code' : status.HTTP_500_INTERNAL_SERVER_ERROR,
-        'message' : f"Exception: {type(EXE)}",
-        'error': str(EXE)
-        }), status.HTTP_500_INTERNAL_SERVER_ERROR
 
 @app.errorhandler(status.HTTP_404_NOT_FOUND)
 def error_handler_404(error):

@@ -1,7 +1,7 @@
 from Server import app, db, bcrypt
 from Server.Utils.utils import Exception_Info
 from Server.Utils.pre_processor import Pre_Process, Format_Results
-from Server.Utils.vdb import Search_VDB
+# from Server.Utils.vdb import Search_VDB
 from flask import request, abort, jsonify
 from flask_api import status ,exceptions
 from .schemas import UserCreationSchema, UserLoginSchema, UserSchema, ValidationError
@@ -75,10 +75,6 @@ def delete_user(id):
         db.session.delete(user)
         db.session.commit()
     except SQLAlchemyError as exe:
-        db.session.rollback()
-        Exception_Info()
-        raise exe
-    except Exception as exe:
         db.session.rollback()
         Exception_Info()
         raise exe
