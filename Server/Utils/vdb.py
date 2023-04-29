@@ -62,7 +62,7 @@ class vector_database:
         return results
 
 
-    def Search_VDB_videos(self, query: List[float], top_k: int):
+    def Search_VDB_videos(self, query_embedding: List[float], top_k: int):
         """
         This function will return top_k results that is similiar to the query embedding
         """
