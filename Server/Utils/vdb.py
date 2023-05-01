@@ -57,9 +57,15 @@ class VectorDatabase:
             data = [query_embedding],
             anns_field = "embedding",
             param = search_params,
+            output_fields=['title', 'abstract'],
             limit = top_k
         )
-        return results
+        # return is 
+        # ( int : dot product value , Entity : object)
+        # To get values from an Entity object
+        # EntityObject.get()
+        # ex: EntityObject.get("title"), EntityObject.get("abstract"), 
+        return results[0][0].distance, results[0][0].entity
 
 
     def Search_VDB_videos(self, query_embedding: List[float], top_k: int):
@@ -73,6 +79,12 @@ class VectorDatabase:
             data = [query_embedding],
             anns_field = "embedding",
             param = search_params,
+            output_fields=['text', 'start_time', 'video_id'],
             limit = top_k
         )
-        return results
+        # return is 
+        # ( dot product value , Entity object)
+        # To get values from Entity object
+        # EntityObject.get()
+        # ex: EntityObject.get("text"), EntityObject.get("start_time"), EntityObject.get("video_id"),
+        return results[0][0].distance, results[0][0].entity
