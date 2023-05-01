@@ -1,17 +1,26 @@
 from Server import app, db, bcrypt
 from Server.Utils.utils import Exception_Info
 from Server.Utils.pre_processor import Pre_Process, Format_Results
-# from Server.Utils.vdb import Search_VDB
+from Server.Utils.vdb import VectorDatabase
+from Server.Utils.model import model
 from flask import request, abort, jsonify
 from flask_api import status ,exceptions
 from .schemas import UserCreationSchema, UserLoginSchema, UserSchema, ValidationError
 from sqlalchemy.exc import SQLAlchemyError
 from .models import User
 
-
+#### Schemas
 userSchema = UserSchema()
 userCreationSchema = UserCreationSchema()
 userLoginSchema = UserLoginSchema()
+
+#### Initiate the Vector Database
+vdb = VectorDatabase()
+vdb.VDB_connect()
+vdb.load_papers()
+vdb.load_videos()
+
+
 
 
 @app.route('/')
@@ -91,9 +100,9 @@ Search
 @app.route('/apis/videos/search', methods=['post'])
 def search_video():
     query = request.json['query']
-    print(query)
     # processed_query = Pre_Process(query)
-    # results = Search_VDB(processed_query)
+    # encoded = model.encode(processed_query)
+    # results = vdb.Search_VDB_videos(encoded)
     return query
 
 
