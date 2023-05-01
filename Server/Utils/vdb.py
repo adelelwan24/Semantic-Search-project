@@ -3,7 +3,7 @@ from pymilvus import connections, Collection
 from dotenv import load_dotenv
 import os
 
-class vector_database:
+class VectorDatabase:
     def VDB_connect(self):
         """
         This function will create a connection with the Milvus server
