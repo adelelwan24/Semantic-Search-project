@@ -74,7 +74,7 @@ const Header = () => {
             } hover:text-white text-[18px] font-medium cursor-pointer`}
             onClick={() => setActive("login")}
           >
-            <Link href="/login" legacyBehavior>
+            <Link href="/LogIn" legacyBehavior>
               <a>Log In</a>
             </Link>
           </button>
@@ -82,7 +82,7 @@ const Header = () => {
             className="bg-[#486d68] hover:bg-[#88b4ae] transition-colors duration-300 ease-in-out text-white text-[18px] font-medium py-2 px-6 rounded-full"
             onClick={() => setActive("signup")}
           >
-            <Link href="/signup" legacyBehavior>Sign Up</Link>
+            <Link href="/SignUp" legacyBehavior>Sign Up</Link>
           </button>
         </div>
 
