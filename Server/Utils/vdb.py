@@ -46,7 +46,7 @@ class VectorDatabase:
         self.videos_collection = Collection("youtube_videos")     
         self.videos_collection.load()
 
-    def search_VDB_papers(self, query_embedding: List[float], top_k: int):
+    def search_VDB_papers(self, query_embedding: List[float], top_k: int) ->  tuple[float, Entity]:
         """
         This function will return top_k results that is similiar to the query embedding
         """
@@ -60,15 +60,13 @@ class VectorDatabase:
             output_fields=['title', 'abstract'],
             limit = top_k
         )
-        # return is 
-        # ( int : dot product value , Entity : object)
         # To get values from an Entity object
         # EntityObject.get()
         # ex: EntityObject.get("title"), EntityObject.get("abstract"), 
         return results[0][0].distance, results[0][0].entity
 
 
-    def Search_VDB_videos(self, query_embedding: List[float], top_k: int):
+    def Search_VDB_videos(self, query_embedding: List[float], top_k: int) -> tuple[float, Entity]:
         """
         This function will return top_k results that is similiar to the query embedding
         """
@@ -82,8 +80,6 @@ class VectorDatabase:
             output_fields=['text', 'start_time', 'video_id'],
             limit = top_k
         )
-        # return is 
-        # ( dot product value , Entity object)
         # To get values from Entity object
         # EntityObject.get()
         # ex: EntityObject.get("text"), EntityObject.get("start_time"), EntityObject.get("video_id"),
