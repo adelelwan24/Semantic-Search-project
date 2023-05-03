@@ -46,41 +46,58 @@ class VectorDatabase:
         self.videos_collection = Collection("youtube_videos")     
         self.videos_collection.load()
 
-    def search_VDB_papers(self, query_embedding: List[float], top_k: int) ->  tuple[float, Entity]:
+    def search_VDB_papers(self, queries_embeddings: list[List[float]], top_k: int, offset: int) ->  results: pymilvus.orm.search.SearchResult:
+
         """
-        This function will return top_k results that is similiar to the query embedding
+        This function will return top_k results that is similiar to the query embedding from research_papers collection
+        args:
+            queries_embedding: a list of queries embeddibgs, queries embeddibgs are lists of float.
+            top_k: the number of returned search results
+            offset: the number of search results to skip from the top
         """
         search_params = {
-            "metric_type": "IP" #inner product
+            "metric_type": "IP", #inner product
+            "offset": offset
         }
         results = self.papers_collection.search(
-            data = [query_embedding],
+            data = queries_embeddings,
             anns_field = "embedding",
             param = search_params,
             output_fields=['title', 'abstract'],
             limit = top_k
         )
-        # To get values from an Entity object
-        # EntityObject.get()
-        # ex: EntityObject.get("title"), EntityObject.get("abstract"), 
-        return results[0][0].distance, results[0][0].entity
+        # pymilvus.orm.search.SearchResult returns search results for all queris with same order
+        # pymilvus.orm.search.SearchResult can be considered as an array of pymilvus.orm.search.Hits
+        # each pymilvus.orm.search.Hits can be considered as an array of pymilvus.orm.search.Hit
+        # each pymilvus.orm.search.Hit has attributes (id: int, distance: float, entity: pymilvus.client.abstract.Entity)
+        # To access value in pymilvus.client.abstract.Entity, use entity.get()
+        # example: entity.get('text'), entity.get('start_time'), entity.get('video_id').
+        return results
 
 
-    def Search_VDB_videos(self, query_embedding: List[float], top_k: int) -> tuple[float, Entity]:
+    def Search_VDB_videos(self, queries_embeddings: list[List[float]], top_k: int, offset: int) -> results: pymilvus.orm.search.SearchResult:
         """
-        This function will return top_k results that is similiar to the query embedding
+        This function will return top_k results that is similiar to the query embedding from youtube_videos collection
+        args:
+            queries_embedding: a list of queries embeddibgs, queries embeddibgs are lists of float.
+            top_k: the number of returned search results
+            offset: the number of search results to skip from the top
         """
         search_params = {
-            "metric_type": "IP" #inner product
+            "metric_type": "IP", #inner product
+            "offset": offset
         }
         results = self.videos_collection.search(
-            data = [query_embedding],
+            data = queries_embeddings,
             anns_field = "embedding",
             param = search_params,
             output_fields=['text', 'start_time', 'video_id'],
             limit = top_k
         )
-        # To get values from Entity object
-        # EntityObject.get()
-        # ex: EntityObject.get("text"), EntityObject.get("start_time"), EntityObject.get("video_id"),
-        return results[0][0].distance, results[0][0].entity
+        # pymilvus.orm.search.SearchResult returns search results for all queris with same order
+        # pymilvus.orm.search.SearchResult can be considered as an array of pymilvus.orm.search.Hits
+        # each pymilvus.orm.search.Hits can be considered as an array of pymilvus.orm.search.Hit
+        # each pymilvus.orm.search.Hit has attributes (id: int, distance: float, entity: pymilvus.client.abstract.Entity)
+        # To access value in pymilvus.client.abstract.Entity, use entity.get()
+        # example: entity.get('text'), entity.get('start_time'), entity.get('video_id').
+        return results
