@@ -5,7 +5,7 @@ from Server.Utils.vdb import VectorDatabase
 from Server.Utils.model import model
 from flask import request, abort, jsonify
 from flask_api import status ,exceptions
-from .schemas import UserCreationSchema, UserLoginSchema, UserSchema, ValidationError
+from .schemas import UserCreationSchema, UserLoginSchema, UserSchema
 from sqlalchemy.exc import SQLAlchemyError
 from .models import User
 
@@ -97,25 +97,28 @@ Search
 '''
 ################################################################################
 
-@app.route('/apis/videos/search', methods=['post'])
+@app.route('/videos/search')
 def search_video():
-    query = request.json['query']
-    # processed_query = Pre_Process(query)
-    # encoded = model.encode(processed_query)
-    # results = vdb.Search_VDB_videos(encoded)
-    return query
+    args = request.args
+    query = args.get('query', None, str)
+    offset = args.get('offset', 0 , int)
+    processed_query = Pre_Process(query)
+    encoded = model.encode(processed_query)
+    results = vdb.Search_VDB_videos([encoded], offset=offset)
+    results = Format_Results(results)
+    return jsonify(results)
 
 
 
-@app.route('/apis/papers/search', methods=['post'])
+@app.route('/papers/search')
 def search_papers():
-    if request.is_json:
-        query = request.json['query']
-    else:
-        query = request.form['query']
-    print(query)
-    # processed_query = Pre_Process(query)
-    # results = Search_VDB(processed_query)
-    return query
+    args = request.args
+    query = args.get('query', None, str)
+    offset = args.get('offset', 0 , int)
+    processed_query = Pre_Process(query)
+    encoded = model.encode(processed_query)
+    results = vdb.Search_VDB_videos([encoded], offset=offset)
+    results = Format_Results(results)
+    return jsonify(results)
 
 from Server.error_handlers import *
