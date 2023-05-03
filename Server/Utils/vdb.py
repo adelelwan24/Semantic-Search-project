@@ -1,5 +1,5 @@
 from typing import List
-from pymilvus import connections, Collection
+from pymilvus import connections, Collection, orm
 from dotenv import load_dotenv
 import os
 
@@ -46,7 +46,7 @@ class VectorDatabase:
         self.videos_collection = Collection("youtube_videos")     
         self.videos_collection.load()
 
-    def search_VDB_papers(self, queries_embeddings: list[List[float]], top_k: int, offset: int) ->  results: pymilvus.orm.search.SearchResult:
+    def search_VDB_papers(self, queries_embeddings: list[List[float]], top_k: int=5, offset: int=0) ->  orm.search.SearchResult:
 
         """
         This function will return top_k results that is similiar to the query embedding from research_papers collection
@@ -75,7 +75,7 @@ class VectorDatabase:
         return results
 
 
-    def Search_VDB_videos(self, queries_embeddings: list[List[float]], top_k: int, offset: int) -> results: pymilvus.orm.search.SearchResult:
+    def Search_VDB_videos(self, queries_embeddings: list[List[float]], top_k: int=5, offset: int=0) -> orm.search.SearchResult:
         """
         This function will return top_k results that is similiar to the query embedding from youtube_videos collection
         args:
@@ -94,6 +94,7 @@ class VectorDatabase:
             output_fields=['text', 'start_time', 'video_id'],
             limit = top_k
         )
+        print(type(results))
         # pymilvus.orm.search.SearchResult returns search results for all queris with same order
         # pymilvus.orm.search.SearchResult can be considered as an array of pymilvus.orm.search.Hits
         # each pymilvus.orm.search.Hits can be considered as an array of pymilvus.orm.search.Hit
@@ -101,3 +102,19 @@ class VectorDatabase:
         # To access value in pymilvus.client.abstract.Entity, use entity.get()
         # example: entity.get('text'), entity.get('start_time'), entity.get('video_id').
         return results
+    
+
+if __name__ == '__main__' :
+    vdb = VectorDatabase()
+    vdb.VDB_connect()
+    vdb.load_papers()
+    vdb.load_videos()
+    res = vdb.Search_VDB_videos([[.5] * 768], 5, 0)
+    print(res)
+    print('#' * 80)
+    print(res[0][0])
+    print('#' * 80)
+    print(res[0][0].entity.get('text'))
+    print('#' * 80)
+
+    
