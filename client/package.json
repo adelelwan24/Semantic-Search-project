@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "grad",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,11 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "autoprefixer": "10.4.14",
-    "next": "13.3.4",
+    "@emailjs/browser": "^3.11.0",
+    "@react-three/drei": "^9.66.0",
+    "@react-three/fiber": "^8.12.2",
+    "autoprefixer": "^10.4.14",
+    "framer-motion": "^10.12.4",
+    "maath": "^0.5.3",
+    "next": "13.3.1",
     "postcss": "8.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.8.0",
+    "react-player": "^2.12.0",
+    "react-tilt": "^1.0.2",
+    "react-vertical-timeline-component": "^3.6.0",
     "tailwindcss": "3.3.2"
   }
 }
