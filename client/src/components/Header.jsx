@@ -78,12 +78,14 @@ const Header = () => {
               <a>Log In</a>
             </Link>
           </button>
-          <button
-            className="bg-[#486d68] hover:bg-[#88b4ae] transition-colors duration-300 ease-in-out text-white text-[18px] font-medium py-2 px-6 rounded-full"
-            onClick={() => setActive("signup")}
-          >
-            <Link href="/SignUp" legacyBehavior>Sign Up</Link>
-          </button>
+          
+            <Link href="/SignUp" legacyBehavior>
+              <button
+                className="bg-[#486d68] hover:bg-[#88b4ae] transition-colors duration-300 ease-in-out text-white text-[18px] font-medium py-2 px-6 rounded-full"
+                onClick={() => setActive("signup")}
+              > Sign Up
+              </button>
+            </Link>
         </div>
 
         {/* navbar for small devices  */}
