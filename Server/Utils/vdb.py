@@ -71,7 +71,7 @@ class VectorDatabase:
         # each pymilvus.orm.search.Hits can be considered as an array of pymilvus.orm.search.Hit
         # each pymilvus.orm.search.Hit has attributes (id: int, distance: float, entity: pymilvus.client.abstract.Entity)
         # To access value in pymilvus.client.abstract.Entity, use entity.get()
-        # example: entity.get('text'), entity.get('start_time'), entity.get('video_id').
+        # example: entity.get('title'), entity.get('abstract').
         return results
 
 
