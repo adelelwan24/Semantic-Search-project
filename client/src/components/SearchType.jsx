@@ -28,11 +28,11 @@ const VideoCard = () => {
           <h2 className="text-white text-[20px] font-bold text-center"> Videos</h2>
           <hr className="w-20 h-1 mx-auto my-1 border-1 bg-yellow-400"/>
           <h3 className="text-secondary text-[16px] font-bold text-center"> find much easier in your Videos</h3>
-          <button className="bg-[#66B0A5] text-white py-3 px-8 rounded-full w-[165px] h-[50px] hover:bg-[#66B0A5]transition-colors duration-300 ease-in-out">
-            <Link legacyBehavior href='/VideoSearch'>
+          <Link legacyBehavior href='/VideoSearch'>
+            <button className="bg-[#66B0A5] text-white py-3 px-8 rounded-full w-[165px] h-[50px] hover:bg-[#66B0A5]transition-colors duration-300 ease-in-out">
               <a className="text-white font-bold">search now !</a>
-            </Link>
-          </button>
+            </button>
+          </Link>
         </div>
       </motion.div>
     </div>
@@ -57,11 +57,11 @@ const ArticleCard = () => {
           <h2 className="text-white text-[20px] font-bold text-center"> Articles </h2>
           <hr className="w-20 h-1 mx-auto my-1 border-1 bg-yellow-400"/>
           <h3 className="text-secondary text-[16px] font-bold text-center"> find much easier in your playlists</h3>
-          <button className="bg-[#66B0A5] text-white py-3 px-8 rounded-full w-[165px] h-[50px] hover:bg-[#66B0A5]transition-colors duration-300 ease-in-out">
-            <Link legacyBehavior href='/ArticleSearch'>
+          <Link legacyBehavior href='/ArticleSearch'>
+            <button className="bg-[#66B0A5] text-white py-3 px-8 rounded-full w-[165px] h-[50px] hover:bg-[#66B0A5]transition-colors duration-300 ease-in-out">
               <a className="text-white font-bold">search now !</a>
-            </Link>
-          </button>
+            </button>
+          </Link>
         </div>
       </motion.div>
     </div>
@@ -87,11 +87,11 @@ const PlayListCard = () => {
           <h2 className="text-white text-[20px] font-bold text-center"> Playlists </h2>
           <hr className="w-20 h-1 mx-auto my-1 border-1 bg-yellow-400"/>
           <h3 className="text-secondary text-[16px] font-bold text-center"> find much easier in your playlists</h3>
-          <button className="bg-[#66B0A5] text-white py-3 px-8 rounded-full w-[165px] h-[50px] hover:bg-[#66B0A5]transition-colors duration-300 ease-in-out">
-            <Link legacyBehavior href='/PlayListSearch'>
+          <Link legacyBehavior href='/PlayListSearch'>
+            <button className="bg-[#66B0A5] text-white py-3 px-8 rounded-full w-[165px] h-[50px] hover:bg-[#66B0A5]transition-colors duration-300 ease-in-out">
               <a className="text-white font-bold">search now !</a>
-            </Link>
-          </button>
+            </button>
+          </Link>
         </div>
       </motion.div>
     </div>
