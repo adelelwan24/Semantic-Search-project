@@ -1,5 +1,4 @@
 
-from datetime import datetime
 from Server import db, bcrypt
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.sql.sqltypes import TIMESTAMP
