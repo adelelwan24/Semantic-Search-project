@@ -1,29 +1,16 @@
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 
 const Search = () => {
   const router = useRouter();
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-
-  useEffect(() => {
-    const searchParams = new URLSearchParams(router.query);
-    const query = searchParams.get("q");
-
-    if (query) {
-      setSearchQuery(query);
-      // Perform search based on the query
-      // and update the searchResults state
-    }
-  }, [router.query]);
+  const SearchParams = useSearchParams();
+  const query = SearchParams ? SearchParams.get("query") : "";
+  const [searchQuery, setSearchQuery] = useState(query);
 
   const handleSearch = (event) => {
     event.preventDefault();
-
-    // Update the URL with the search query
-    router.push(`/video?query=${searchQuery}&offset=`);
-    // Perform search based on the searchQuery state
-    // and update the searchResults state
+    const encodedquery = encodeURI(searchQuery);
+    router.push(`/search?query=${encodedquery}&type=${0}`);
   };
 
   return (
@@ -38,14 +25,11 @@ const Search = () => {
         />
         <button
           type="submit"
-          class="px-4 py-2 bg-[#0e9c7d] text-white font-semibold rounded-lg shadow-md hover:bg-[#0a5344] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+          className="px-4 py-2 bg-[#0e9c7d] text-white font-semibold rounded-lg shadow-md hover:bg-[#0a5344] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
         >
           Search
         </button>
       </form>
-      {searchResults.map((result) => (
-        <div key={result.id}>{result.title}</div>
-      ))}
     </div>
   );
 };
