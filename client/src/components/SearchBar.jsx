@@ -21,7 +21,7 @@ const Search = () => {
     event.preventDefault();
 
     // Update the URL with the search query
-    router.push(`/video?query=${searchQuery}`);
+    router.push(`/video?query=${searchQuery}&offset=`);
     // Perform search based on the searchQuery state
     // and update the searchResults state
   };
@@ -36,10 +36,12 @@ const Search = () => {
           value={searchQuery}
           onChange={(event) => setSearchQuery(event.target.value)}
         />
-        <button type="submit" class="px-4 py-2 bg-[#0e9c7d] text-white font-semibold rounded-lg shadow-md hover:bg-[#0a5344] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-  Search
-</button>
-
+        <button
+          type="submit"
+          class="px-4 py-2 bg-[#0e9c7d] text-white font-semibold rounded-lg shadow-md hover:bg-[#0a5344] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+        >
+          Search
+        </button>
       </form>
       {searchResults.map((result) => (
         <div key={result.id}>{result.title}</div>
