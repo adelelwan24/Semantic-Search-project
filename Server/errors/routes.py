@@ -1,14 +1,13 @@
-from Server import app
-from flask import jsonify
+from flask import jsonify, Blueprint
 from flask_api import status
 from marshmallow import ValidationError
 from sqlalchemy.exc import SQLAlchemyError
 from pymilvus.exceptions import MilvusException
-from .Utils.pre_processor import Format_Exception
+from ..Utils.pre_processor import Format_Exception
 
+errors = Blueprint('errors', '__name__')
 
-
-@app.errorhandler(MilvusException)
+@errors.app_errorhandler(MilvusException)
 def handle_Vector_database(VDB_ERROR):
     return jsonify({
         'code' : VDB_ERROR.code,
@@ -16,7 +15,7 @@ def handle_Vector_database(VDB_ERROR):
         'error': VDB_ERROR.message
         }), status.HTTP_500_INTERNAL_SERVER_ERROR
 
-@app.errorhandler(ValidationError)
+@errors.app_errorhandler(ValidationError)
 def handle_invalid_data_format(VALIDATION_ERROR):
     return jsonify({
         'code' : status.HTTP_400_BAD_REQUEST,
@@ -25,7 +24,7 @@ def handle_invalid_data_format(VALIDATION_ERROR):
         'error': VALIDATION_ERROR.messages_dict
         }), status.HTTP_400_BAD_REQUEST
 
-@app.errorhandler(SQLAlchemyError)
+@errors.app_errorhandler(SQLAlchemyError)
 def sqlalchemy_error_exception(SQL_ERROR):
     return jsonify({
         'code' : 422,
@@ -35,7 +34,7 @@ def sqlalchemy_error_exception(SQL_ERROR):
         }), 422
 
 
-@app.errorhandler(status.HTTP_404_NOT_FOUND)
+@errors.app_errorhandler(status.HTTP_404_NOT_FOUND)
 def error_handler_404(error):
     return jsonify({
         'code' : status.HTTP_404_NOT_FOUND,
@@ -43,7 +42,7 @@ def error_handler_404(error):
         'error' : str(error)
         }), status.HTTP_404_NOT_FOUND
 
-@app.errorhandler(422)
+@errors.app_errorhandler(422)
 def error_handler_422(error):
     return jsonify({
         'code' : 422,
@@ -51,7 +50,7 @@ def error_handler_422(error):
         'error': error
         }), 422
 
-@app.errorhandler(status.HTTP_500_INTERNAL_SERVER_ERROR)
+@errors.app_errorhandler(status.HTTP_500_INTERNAL_SERVER_ERROR)
 def error_handler_500(error):
     return jsonify({
         'code' : status.HTTP_500_INTERNAL_SERVER_ERROR,
