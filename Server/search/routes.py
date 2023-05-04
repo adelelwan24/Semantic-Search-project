@@ -13,7 +13,7 @@ vdb.load_papers()
 vdb.load_videos()
 
 
-search = Blueprint('seach', '__name__')
+search = Blueprint('seach', __name__)
 
 
 @search.route('/videos/search')
@@ -22,7 +22,7 @@ def search_video():
     query = args.get('query', None, str)
     offset = args.get('offset', 0 , int)
     processed_query = Pre_Process(query)
-    encoded = model.encode(processed_query, convert_to_numpy=False, show_progress_bar = True)
+    encoded = model.encode(processed_query, show_progress_bar = True)
     print(type(encoded))
     results = vdb.Search_VDB_videos([encoded], offset=offset)
     results = Format_Results(results)
