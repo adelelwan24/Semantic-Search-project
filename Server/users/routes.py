@@ -1,6 +1,9 @@
-from Server import app, db, bcrypt
+from flask import Blueprint
+
+users = Blueprint('users', '__name__')
+
+from Server import db, bcrypt
 from Server.Utils.utils import Exception_Info
-from Server.Utils.pre_processor import Pre_Process, Format_Results
 from Server.Utils.vdb import VectorDatabase
 from Server.Utils.model import model
 from flask import request, abort, jsonify
@@ -8,6 +11,9 @@ from flask_api import status ,exceptions
 from .schemas import UserCreationSchema, UserLoginSchema, UserSchema
 from sqlalchemy.exc import SQLAlchemyError
 from .models import User
+
+
+
 
 #### Schemas
 userSchema = UserSchema()
@@ -22,31 +28,18 @@ vdb.load_videos()
 
 
 
-
-@app.route('/')
-@app.route('/home')
-def home():
-    return 'hello world'
-
-
-################################################################################
-'''
-Users
-'''
-################################################################################
-
-@app.route('/users')
-@app.route('/users/all')
+@users.route('/users')
+@users.route('/users/all')
 def all_users():
     users = User.query.all()
     return jsonify(userSchema.dump(users, many=True))
 
-@app.route('/users/<int:id>')
+@users.route('/users/<int:id>')
 def get_user_by_id(id):
     user = User.query.filter(User.id == id ).first_or_404()
     return jsonify(userSchema.dump(user))
 
-@app.route('/users/create', methods=['post'])
+@users.route('/users/create', methods=['post'])
 def create_user():
 
     data = userCreationSchema.load(data=request.json)
@@ -62,7 +55,7 @@ def create_user():
 
     return jsonify(userSchema.dump(user)), status.HTTP_201_CREATED
 
-@app.route('/users/login', methods=['post'])
+@users.route('/users/login', methods=['post'])
 def login_user():
     data = userLoginSchema.load(request.json)
     user = User.query.filter(User.email_address == data['email_address']).one_or_none()
@@ -73,7 +66,7 @@ def login_user():
     abort(status.HTTP_401_UNAUTHORIZED, "Password Is Invalid")
     
 
-@app.route('/users/<int:id>', methods= ['delete'])
+@users.route('/users/<int:id>', methods= ['delete'])
 def delete_user(id):
     user_query = User.query.filter(User.id == id)
     if not user_query.one_or_none():
@@ -89,36 +82,3 @@ def delete_user(id):
         raise exe
 
     return jsonify(userSchema.dump(user)), status.HTTP_204_NO_CONTENT
-
-
-################################################################################
-'''
-Search
-'''
-################################################################################
-
-@app.route('/videos/search')
-def search_video():
-    args = request.args
-    query = args.get('query', None, str)
-    offset = args.get('offset', 0 , int)
-    processed_query = Pre_Process(query)
-    encoded = model.encode(processed_query)
-    results = vdb.Search_VDB_videos([encoded], offset=offset)
-    results = Format_Results(results)
-    return jsonify(results)
-
-
-
-@app.route('/papers/search')
-def search_papers():
-    args = request.args
-    query = args.get('query', None, str)
-    offset = args.get('offset', 0 , int)
-    processed_query = Pre_Process(query)
-    encoded = model.encode(processed_query)
-    results = vdb.Search_VDB_videos([encoded], offset=offset)
-    results = Format_Results(results)
-    return jsonify(results)
-
-from Server.error_handlers import *

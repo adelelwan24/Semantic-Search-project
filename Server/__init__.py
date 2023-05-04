@@ -30,5 +30,10 @@ migrate = Migrate(app, db)
 # from .models import *
 # with app.app_context():
 #     db.create_all()
+from Server.users.routes import users
+from Server.search.routes import search
 
-from Server import routes
+app.register_blueprint(users)
+app.register_blueprint(search)
+
+from Server import error_handlers
