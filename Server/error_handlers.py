@@ -3,22 +3,35 @@ from flask import jsonify
 from flask_api import status
 from marshmallow import ValidationError
 from sqlalchemy.exc import SQLAlchemyError
+from pymilvus.exceptions import MilvusException
+from .Utils.pre_processor import Format_Exception
 
+
+
+@app.errorhandler(MilvusException)
+def handle_Vector_database(VDB_ERROR):
+    return jsonify({
+        'code' : VDB_ERROR.code,
+        'message' :f'Vector Database Error: {Format_Exception(VDB_ERROR)}',
+        'error': VDB_ERROR.message
+        }), status.HTTP_500_INTERNAL_SERVER_ERROR
 
 @app.errorhandler(ValidationError)
 def handle_invalid_data_format(VALIDATION_ERROR):
     return jsonify({
         'code' : status.HTTP_400_BAD_REQUEST,
-        'message' : f"Data Validation Error",
-        'error': VALIDATION_ERROR.__dict__['messages']
+        'message' : f"Data Validation Error: {Format_Exception(VALIDATION_ERROR)}",
+        # 'error': VALIDATION_ERROR.__dict__['messages']
+        'error': VALIDATION_ERROR.messages_dict
         }), status.HTTP_400_BAD_REQUEST
 
 @app.errorhandler(SQLAlchemyError)
 def sqlalchemy_error_exception(SQL_ERROR):
     return jsonify({
         'code' : 422,
-        'message' : f"SQLAlchemy Error: {type(SQL_ERROR)}",
-        'error': str(SQL_ERROR._sql_message())
+        'message' : f"SQLAlchemy Error: {Format_Exception(SQL_ERROR)}",
+        # 'error': str(SQL_ERROR._sql_message())
+        'error': str(SQL_ERROR._message()).replace('\n', '')
         }), 422
 
 

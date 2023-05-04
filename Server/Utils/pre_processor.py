@@ -1,5 +1,5 @@
 from pymilvus.orm.search import  SearchResult
-from typing import List
+from typing import List, TypeVar
 
 
 def Pre_Process(query: str) -> str:
@@ -18,3 +18,6 @@ def Format_Results(results : SearchResult) -> List[dict]:
             data[key] = match.entity.get(key)
         ret.append(data)
     return ret
+
+def Format_Exception(obj : TypeVar) -> str:
+    return str(type(obj)).split(' ')[1].replace("'", '').replace(">", '').split('.')[-1]
