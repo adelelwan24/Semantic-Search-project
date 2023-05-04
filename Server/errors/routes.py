@@ -5,7 +5,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from pymilvus.exceptions import MilvusException
 from ..Utils.pre_processor import Format_Exception
 
-errors = Blueprint('errors', '__name__')
+errors = Blueprint('errors', __name__)
 
 @errors.app_errorhandler(MilvusException)
 def handle_Vector_database(VDB_ERROR):

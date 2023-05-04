@@ -1,25 +1,18 @@
-from flask import Flask
+from flask import Flask, current_app
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
-from dotenv import load_dotenv
-import os
 
-load_dotenv()
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv(
-    'SQLALCHEMY_TRACK_MODIFICATIONS')
 
-db = SQLAlchemy(app)
-CORS(app)
-Marshmallow(app)
-bcrypt = Bcrypt(app)
-migrate = Migrate(app, db)
+
+db = SQLAlchemy()
+cros = CORS()
+marsh = Marshmallow()
+bcrypt = Bcrypt()
+migrate = Migrate()
 
 # @app.after_request
 # def after_request(response):
@@ -28,13 +21,25 @@ migrate = Migrate(app, db)
 #     return response
 
 # from .models import *
-# with app.app_context():
+# with current_app.app_context():
 #     db.create_all()
 
-from Server.users.routes import users
-from Server.search.routes import search
-from Server.errors.routes import errors
+def create_app(file_name='config.py'):
+    app = Flask(__name__)
+    app.config.from_pyfile(file_name)
 
-app.register_blueprint(users)
-app.register_blueprint(search)
-app.register_blueprint(errors)
+    db.init_app(app)
+    cros.init_app(app)
+    marsh.init_app(app)
+    bcrypt.init_app(app)
+    migrate.init_app(app, db)
+
+
+    from Server.users.routes import users
+    from Server.search.routes import search
+    from Server.errors.routes import errors
+    app.register_blueprint(users)
+    app.register_blueprint(search)
+    app.register_blueprint(errors)
+
+    return app

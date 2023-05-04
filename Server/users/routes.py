@@ -1,13 +1,13 @@
 from flask import Blueprint
 
-users = Blueprint('users', '__name__')
+users = Blueprint('users', __name__, url_prefix='/users')
 
 from Server import db, bcrypt
 from Server.Utils.utils import Exception_Info
 from Server.Utils.vdb import VectorDatabase
 from Server.Utils.model import model
 from flask import request, abort, jsonify
-from flask_api import status ,exceptions
+from flask_api import status
 from .schemas import UserCreationSchema, UserLoginSchema, UserSchema
 from sqlalchemy.exc import SQLAlchemyError
 from .models import User
@@ -28,18 +28,18 @@ vdb.load_videos()
 
 
 
-@users.route('/users')
-@users.route('/users/all')
+@users.route('/')
+@users.route('/all')
 def all_users():
     users = User.query.all()
     return jsonify(userSchema.dump(users, many=True))
 
-@users.route('/users/<int:id>')
+@users.route('/<int:id>')
 def get_user_by_id(id):
     user = User.query.filter(User.id == id ).first_or_404()
     return jsonify(userSchema.dump(user))
 
-@users.route('/users/create', methods=['post'])
+@users.route('/create', methods=['post'])
 def create_user():
 
     data = userCreationSchema.load(data=request.json)
@@ -55,7 +55,7 @@ def create_user():
 
     return jsonify(userSchema.dump(user)), status.HTTP_201_CREATED
 
-@users.route('/users/login', methods=['post'])
+@users.route('/login', methods=['post'])
 def login_user():
     data = userLoginSchema.load(request.json)
     user = User.query.filter(User.email_address == data['email_address']).one_or_none()
@@ -66,7 +66,7 @@ def login_user():
     abort(status.HTTP_401_UNAUTHORIZED, "Password Is Invalid")
     
 
-@users.route('/users/<int:id>', methods= ['delete'])
+@users.route('/<int:id>', methods= ['delete'])
 def delete_user(id):
     user_query = User.query.filter(User.id == id)
     if not user_query.one_or_none():
