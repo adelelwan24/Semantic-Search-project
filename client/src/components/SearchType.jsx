@@ -9,6 +9,8 @@ import { fadeIn, textVariant  } from "@/utils/motion";
 // import { Tilt } from 'react-tilt'
 
 import { SectionWrapper } from "@/hoc";
+
+
 const VideoCard = () => {
   return(
     <div className="xs:w-[250px]">
@@ -56,7 +58,7 @@ const ArticleCard = () => {
           <img src="/document.jpg" className="object-cover overflow-hidden rounded-2xl"/>
           <h2 className="text-white text-[20px] font-bold text-center"> Articles </h2>
           <hr className="w-20 h-1 mx-auto my-1 border-1 bg-yellow-400"/>
-          <h3 className="text-secondary text-[16px] font-bold text-center"> find much easier in your playlists</h3>
+          <h3 className="text-secondary text-[16px] font-bold text-center"> find much easier in your Articles</h3>
           <button className="bg-[#66B0A5] text-white py-3 px-8 rounded-full w-[165px] h-[50px] hover:bg-[#66B0A5]transition-colors duration-300 ease-in-out">
             <Link legacyBehavior href='/ArticleSearch'>
               <a className="text-white font-bold">search now !</a>
@@ -98,6 +100,37 @@ const PlayListCard = () => {
   )
 }
 
+const VideoSearchCard = () => {
+  return(
+    <div className="xs:w-[250px]">
+      <motion.div
+        variants={fadeIn("right","spring", 0.5, 0.75)}
+        className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card"
+      >
+        <div
+          options={{
+            max:45,
+            scale:1,
+            speed: 450
+          }}
+          className='bg-tertiary rounded-[20px]  px-12 min-h-[450px]  flex justify-evenly items-center flex-col relative'
+        >
+          <img src="/playlist.png" className="w-full h-full object-cover overflow-hidden rounded-2xl"/>
+          <h2 className="text-white text-[20px] font-bold text-center"> Videos </h2>
+          <hr className="w-20 h-1 mx-auto my-1 border-1 bg-yellow-400"/>
+          <h3 className="text-secondary text-[16px] font-bold text-center"> Search in our videos </h3>
+          <button className="bg-[#66B0A5] text-white py-3 px-8 rounded-full w-[165px] h-[50px] hover:bg-[#66B0A5]transition-colors duration-300 ease-in-out">
+            <Link legacyBehavior href='/Videos'>
+              <a className="text-white font-bold">search now !</a>
+            </Link>
+          </button>
+        </div>
+      </motion.div>
+    </div>
+  )
+}
+
+
 const SearchType = ({ index, title , image}) => {
   return (
     <section id="searchType">
@@ -121,6 +154,12 @@ const SearchType = ({ index, title , image}) => {
 
             <PlayListCard/>
           </div>
+
+          <div>
+
+            <VideoSearchCard/>
+          </div>
+
         </div>
       </motion.div>
       <br/>

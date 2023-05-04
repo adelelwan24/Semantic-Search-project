@@ -14,3 +14,10 @@ export default async function handler(req, res) {
 
   res.status(200).json({ data })
 }
+
+
+const handleSearch = async () => {
+  const response = await fetch(`/api/videos?searchTerm=${searchTerm}`);
+  const data = await response.json();
+  
+};

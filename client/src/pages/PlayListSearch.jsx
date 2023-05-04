@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useState,useEffect } from "react";
 import ReactPlayer from "react-player";
 import Header from "../components/Header";
-import Layout from "@/Layout";
+// import Layout from "@/Layout";
 import { styles } from "@/styles/style";
 
 

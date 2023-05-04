@@ -21,11 +21,10 @@ export default function Home() {
       </div>
       <section>
         <SearchType/>
-        {/* <About/> */}
         <Contact/>
+        <About/>
       </section>
       <div className='relative z-0'>
-        {/* <Contact/> */}
         <StarsCanvas/>
       </div>
       <Footer/>

@@ -10,7 +10,7 @@ const SignUpPage = () => {
   <>
     <Header/>
     <section>
-      <div className="flex justify-center items-center h-screen gap-10">
+      <div className="flex justify-center items-center h-screen">
         <form className="flex flex-col items-center p-6 border border-gray-300 rounded-lg shadow-lg w-96 h-150">
           <h2 className="text-lg font-bold mb-6">Sign Up</h2>
           <input className="rounded-lg border-gray-300 focus:outline-none focus:border-gray-400 p-3 w-full mb-4" type="text" placeholder="Username" />
@@ -36,7 +36,7 @@ const SignUpPage = () => {
             </button>
           </div>
         </form>
-        <div className="hidden md:block ml-8 w-1/2">
+        <div className="hidden md:block ml-10 w-1/2">
           <Image src="/signup.png" alt="Sign Up" width={500} height={800} objectFit="cover" />
         </div>
       </div>
