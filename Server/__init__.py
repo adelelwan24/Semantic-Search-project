@@ -23,8 +23,10 @@ migrate = Migrate()
 # from .models import *
 # with current_app.app_context():
 #     db.create_all()
+from Server.users.routes import users
+from Server.search.routes import search
 
-def create_app(file_name='config.py'):
+def create_app(file_name='config.py') -> Flask:
     app = Flask(__name__)
     app.config.from_pyfile(file_name)
 

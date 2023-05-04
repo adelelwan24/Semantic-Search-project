@@ -4,6 +4,7 @@ users = Blueprint('users', __name__, url_prefix='/users')
 
 from Server import db, bcrypt
 from Server.Utils.utils import Exception_Info
+from Server.Utils.pre_processor import Pre_Process, Format_Results
 from Server.Utils.vdb import VectorDatabase
 from Server.Utils.model import model
 from flask import request, abort, jsonify
@@ -11,9 +12,6 @@ from flask_api import status
 from .schemas import UserCreationSchema, UserLoginSchema, UserSchema
 from sqlalchemy.exc import SQLAlchemyError
 from .models import User
-
-
-
 
 #### Schemas
 userSchema = UserSchema()
