@@ -17,7 +17,7 @@ const SignUpPage = () => {
           <input className="rounded-lg border-gray-300 focus:outline-none focus:border-gray-400 p-3 w-full mb-4" type="email" placeholder="Email" />
           <input className="rounded-lg border-gray-300 focus:outline-none focus:border-gray-400 p-3 w-full mb-4" type="password" placeholder="Password" />
           <input className="rounded-lg border-gray-300 focus:outline-none focus:border-gray-400 p-3 w-full mb-4" type="password" placeholder="Confirm Password" />
-          <button className="p-3 m-2 rounded-lg border border-gray-300 shadow-md w-32 hover:bg-red-500">
+          <button className="p-3 m-2 rounded-lg border border-gray-300 shadow-md w-32 hover:bg-[#0e9c7d]">
               Sign Up
             </button>
           <h5 className="mb-4">or sign up with</h5>

@@ -24,7 +24,7 @@ import { FaFacebookSquare, FaGithubSquare } from 'react-icons/fa';
               className="p-3 m-2 rounded-lg border border-gray-300 shadow-md w-80"
             />
 
-            <button className="p-3 m-2 rounded-lg border border-gray-300 shadow-md w-32 hover:bg-red-500">
+            <button className="p-3 m-2 rounded-lg border border-gray-300 shadow-md w-32 hover:bg-[#0e9c7d]">
               Log In
             </button>
 

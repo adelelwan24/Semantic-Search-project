@@ -8,6 +8,8 @@ import useSWR from "swr";
 import Spinner from "@/components/Spinner";
 import VideoElement from "@/components/VideoElement";
 
+
+
 const fetchResults = async (url) => {
   const response = await fetch(url);
   if (!response.ok) {
@@ -71,6 +73,7 @@ export default function Search() {
       <Head>
         <title>Video Search</title>
       </Head>
+      
       <div className="bg-zinc-900 text-zinc-200 h-screen py-32">
         <div className="flex flex-col gap-10 items-center p-6 ">
           <SearchBar />
