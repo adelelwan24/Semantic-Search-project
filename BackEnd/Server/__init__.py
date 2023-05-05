@@ -1,11 +1,9 @@
-from flask import Flask, current_app
-from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, current_app
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
-
-
 
 
 db = SQLAlchemy()
@@ -23,8 +21,7 @@ migrate = Migrate()
 # from .models import *
 # with current_app.app_context():
 #     db.create_all()
-from Server.users.routes import users
-from Server.search.routes import search
+
 
 def create_app(file_name='config.py') -> Flask:
     app = Flask(__name__)
@@ -35,7 +32,6 @@ def create_app(file_name='config.py') -> Flask:
     marsh.init_app(app)
     bcrypt.init_app(app)
     migrate.init_app(app, db)
-
 
     from Server.users.routes import users
     from Server.search.routes import search
