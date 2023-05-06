@@ -4,6 +4,7 @@ from flask import Flask, current_app
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
+from Server.config import Config
 
 
 db = SQLAlchemy()
@@ -23,9 +24,9 @@ migrate = Migrate()
 #     db.create_all()
 
 
-def create_app(file_name='config.py') -> Flask:
+def create_app(file_name=Config) -> Flask:
     app = Flask(__name__)
-    app.config.from_pyfile(file_name)
+    app.config.from_object(file_name)
 
     db.init_app(app)
     cros.init_app(app)
