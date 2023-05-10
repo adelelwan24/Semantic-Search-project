@@ -21,10 +21,10 @@ export default function Search() {
   // both : 2
   // set default to videos ( 0 )
   const SearchParams = useSearchParams();
-  const Query = SearchParams ? SearchParams.get("query") : "";
+  const Query = SearchParams ? SearchParams.get("query") : null;
   const Type = SearchParams ? SearchParams.get("type") : 0;
 
-  const { data, isLoading } = useSWR(
+  const { data, isLoading, error } = useSWR(
     `http://127.0.0.1:5030/videos/search?query=${Query}`,
     fetchResults
   );
@@ -40,8 +40,12 @@ export default function Search() {
           <SearchBar />
 
           <div className="flex flex-col items-center w-full">
-            {isLoading ? (
+            {Query === null || Query === "" ? (
+              <></>
+            ) : isLoading ? (
               <Spinner />
+            ) : error ? (
+              <>Server Not Working</>
             ) : (
               data.map((ele) => (
                 <div key={ele.id}>
