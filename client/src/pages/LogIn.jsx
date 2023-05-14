@@ -1,16 +1,56 @@
 import Link from "next/link";
+import React, { useState } from 'react';
+import axios from 'axios';
+
 import Header from '../components/Header'
+
 
 import { AiFillGoogleCircle } from 'react-icons/ai';
 import { FaFacebookSquare, FaGithubSquare } from 'react-icons/fa';
 
   const LoginPage = () => {
+
+    const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      // Make a POST request to the login endpoint of your backend API
+      const response = await axios.post('/api/login', { email, password });
+
+      // Handle successful login
+      console.log(response.data); // Replace with your own logic
+    } catch (error) {
+      // Handle login error
+      console.log(error); // Replace with your own logic
+    }
+  };
+
+
     return (
     <>
       <Header/>
       <section>
         <div className="flex justify-center items-center h-screen">
-          <form className="flex flex-col items-center p-8 border border-gray-300 rounded-lg shadow-lg w-120 h-120">
+          <form 
+            className="flex flex-col items-center p-8 border border-gray-300 rounded-lg shadow-lg w-120 h-120" 
+            onSubmit={handleLogin}
+          >  
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+
+
             <h2 className="text-2xl font-bold mb-8 ">Log In</h2>
 
             <input
@@ -24,7 +64,7 @@ import { FaFacebookSquare, FaGithubSquare } from 'react-icons/fa';
               className="p-3 m-2 rounded-lg border border-gray-300 shadow-md w-80"
             />
 
-            <button className="p-3 m-2 rounded-lg border border-gray-300 shadow-md w-32 hover:bg-[#0e9c7d]">
+            <button type="submit" className="p-3 m-2 rounded-lg border border-gray-300 shadow-md w-32 hover:bg-[#0e9c7d]">
               Log In
             </button>
 
