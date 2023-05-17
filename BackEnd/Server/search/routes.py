@@ -8,7 +8,7 @@ from flask import Blueprint
 
 #### Initiate the Vector Database
 vdb = VectorDatabase()
-vdb.VDB_connect()
+vdb.connect()
 vdb.load_papers()
 vdb.load_videos()
 
@@ -22,8 +22,10 @@ def search_video():
     query = args.get('query', None, str)
     offset = args.get('offset', 0 , int)
     processed_query = Pre_Process(query)
+
     encoded = model.encode(processed_query, show_progress_bar = True)
-    results = vdb.Search_VDB_videos([encoded], offset=offset)
+
+    results = vdb.search_videos([encoded], offset=offset)
     results = Format_Results(results)
     return jsonify(results)
 
@@ -35,7 +37,9 @@ def search_papers():
     query = args.get('query', None, str)
     offset = args.get('offset', 0 , int)
     processed_query = Pre_Process(query)
+
     encoded = model.encode(processed_query, show_progress_bar = True)
-    results = vdb.Search_VDB_videos([encoded], offset=offset)
+    
+    results = vdb.search_papers([encoded], offset=offset)
     results = Format_Results(results)
     return jsonify(results)

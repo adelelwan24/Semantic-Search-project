@@ -5,7 +5,7 @@ import os
 
 
 class VectorDatabase:
-    def VDB_connect(self):
+    def connect(self):
         """
         This function will create a connection with the Milvus server
         Call it once you start the server
@@ -20,7 +20,7 @@ class VectorDatabase:
             secure=True,
         )
 
-    def VDB_disconnect(self):
+    def disconnect(self):
         """
         This function will close the connection with the milvus server
         Call it before you close the server
@@ -47,7 +47,7 @@ class VectorDatabase:
         self.videos_collection = Collection("youtube_videos")
         self.videos_collection.load()
 
-    def search_VDB_papers(self, queries_embeddings: list[List[float]], top_k: int = 5, offset: int = 0) -> orm.search.SearchResult:
+    def search_papers(self, queries_embeddings: list[List[float]], top_k: int = 5, offset: int = 0) -> orm.search.SearchResult:
         """
         This function will return top_k results that is similiar to the query embedding from research_papers collection
         args:
@@ -74,7 +74,7 @@ class VectorDatabase:
         # example: entity.get('title'), entity.get('abstract').
         return results
 
-    def Search_VDB_videos(self, queries_embeddings: list[List[float]], top_k: int = 5, offset: int = 0) -> orm.search.SearchResult:
+    def search_videos(self, queries_embeddings: list[List[float]], top_k: int = 5, offset: int = 0) -> orm.search.SearchResult:
         """
         This function will return top_k results that is similiar to the query embedding from youtube_videos collection
         args:
@@ -104,10 +104,10 @@ class VectorDatabase:
 
 if __name__ == '__main__':
     vdb = VectorDatabase()
-    vdb.VDB_connect()
+    vdb.connect()
     vdb.load_papers()
     vdb.load_videos()
-    res = vdb.Search_VDB_videos([[.5] * 768], 5, 0)
+    res = vdb.search_videos([[.5] * 768], 5, 0)
     print(res)
     print('#' * 80)
     print(res[0][0])
