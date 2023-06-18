@@ -34,7 +34,7 @@ const Header = () => {
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto ">
       <Link href="/" legacyBehavior >
-        <div className="flex items-center gap-2 cursor-pointer">
+        <div className="flex items-center gap-2 cursor-pointer animate-slideRight">
           <img src="/logo-white.svg" alt="Logo" className="w-8 h-8 mr-2" />
           <p className="text-xl font-bold">
             <span className="">Search Mate</span>
@@ -45,7 +45,7 @@ const Header = () => {
           <li
             className={`${
               active === "home" ? "text-white" : "text-secondary"
-            } hover:text-white text-[18px] font-medium cursor-pointer`}
+            } hover:text-[#1ebea6] text-[18px] hover:scale-125 animate-slideTop font-medium cursor-pointer`}
             onClick={() => setActive("home")}
           >
             <Link href="/" legacyBehavior>
@@ -56,8 +56,8 @@ const Header = () => {
               <li
                 key={link.id}
                 className={`${
-                  active === link.title ? "text-white" : "text-secondary"
-                }  hover:text-white text-[18px] font-medium cursor-pointer`}
+                  active === link.title ? "text-white" : "text-secondary" 
+                }  hover:text-[#1ebea6] text-[18px] hover:scale-125 animate-slideTop animation-delay-500 font-medium cursor-pointer `}
                 onClick={() => setActive(link.title)}
               >
                 <Link href={`/#${link.id}`} legacyBehavior>
@@ -71,7 +71,7 @@ const Header = () => {
           <button
             className={`${
               active === "login" ? "text-white" : "text-secondary"
-            } hover:text-white text-[18px] font-medium cursor-pointer`}
+            } hover:text-[#1ebea6] text-[18px] hover:scale-125 animate-slideLeft font-medium cursor-pointer`}
             onClick={() => setActive("login")}
           >
             <Link href="/LogIn" legacyBehavior>
@@ -80,7 +80,7 @@ const Header = () => {
           </button>
             <Link href="/SignUp" legacyBehavior>
             <button
-              className="bg-[#486d68] hover:bg-[#88b4ae] transition-colors duration-300 ease-in-out text-white text-[18px] font-medium py-2 px-6 rounded-full"
+              className="bg-[#486d68] hover:bg-[#1ebea6] transition-colors duration-300 ease-in-out text-white text-[18px] animate-slideLeft font-medium py-2 px-6 rounded-full"
               onClick={() => setActive("signup")}
             >
               <a>Sign Up</a>

@@ -164,12 +164,12 @@ const SearchInVideos = () => {
 
 const SearchType = ({ index, title, image }) => {
   return (
-    <section id="searchType">
+    <section id="searchType" className="">
       <motion.div variants={textVariant()}>
-        <h2 className={`${styles.sectionHeadText}  text-[60px]`}>
+        <h2 className={`${styles.sectionHeadText} font-serif font-abril-fatface text-4xl font-bold text-[60px]`}>
           Search Type
         </h2>
-        <div className="px-40 mt-20 flex flex-wrap gap-20">
+        <div className="px-40 mt-20 flex flex-wrap gap-20 animate-slideRight delay-1000">
           <div>
             <VideoCard />
           </div>
@@ -178,9 +178,9 @@ const SearchType = ({ index, title, image }) => {
             <ArticleCard />
           </div>
 
-          <div>
-            <PlayListCard />
-          </div>
+          
+            {/* <PlayListCard /> */}
+          
           <div>
             <SearchInVideos/>
           </div>

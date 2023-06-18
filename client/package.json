@@ -25,6 +25,7 @@
     "react-tilt": "^1.0.2",
     "react-vertical-timeline-component": "^3.6.0",
     "swr": "^2.1.5",
-    "tailwindcss": "3.3.2"
+    "tailwindcss": "3.3.2",
+    "typed.js": "^2.0.16"
   }
 }
