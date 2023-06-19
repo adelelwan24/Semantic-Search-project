@@ -12,7 +12,7 @@ const VideoElement = ({ video_id, start, text }) => {
   };
 
   return (
-    <div className=" m-4 p-[1px] rounded-[20px] flex flex-wrap max-w-lg  green-pink-gradient  shadow-card xs:w-[px]">
+    <div className=" m-4 p-[1px] rounded-[20px] items-center flex flex-wrap max-w-2xl  green-pink-gradient  shadow-card xs:w-[px]">
       <motion.div
         variants={fadeIn("right","spring", 0.5, 0.75)}
         
@@ -23,7 +23,7 @@ const VideoElement = ({ video_id, start, text }) => {
           scale:1,
           speed: 450
         }}
-        className='bg-tertiary rounded-[20px] py-10 px-12 min-h-[px] flex justify-evenly items-center flex-col '>
+        className='bg-tertiary rounded-[20px] py-10 px-12 min-h-[px] flex justify-evenly items-center flex-col xs:w-[px]'>
         
         <div>  
           <p>{showMore ? text : `${text.slice(0, 100)}...`}</p>
