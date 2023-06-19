@@ -1,7 +1,8 @@
-from typing import List
 from pymilvus import connections, Collection, orm
 from dotenv import load_dotenv
+from typing import List
 import os
+
 
 class VectorDatabase:
     def VDB_connect(self):
@@ -14,7 +15,8 @@ class VectorDatabase:
             alias="default",
             user=os.getenv("Milvus_username"),
             password=os.getenv("Milvus_password"),
-            uri=os.getenv("Milvus_uri"), #  Public endpoint obtained from Zilliz Cloud
+            # Public endpoint obtained from Zilliz Cloud
+            uri=os.getenv("Milvus_uri"),
             secure=True,
         )
 
@@ -32,9 +34,8 @@ class VectorDatabase:
         Note : it is loaded to the VDB cloud memory not to server memory 
         Call it after connecting to the VDB and before searching
         """
-        self.papers_collection = Collection("research_papers")     
+        self.papers_collection = Collection("research_papers")
         self.papers_collection.load()
-
 
     def load_videos(self):
         """
@@ -43,11 +44,10 @@ class VectorDatabase:
         Note : it is loaded to the VDB cloud memory not to server memory 
         Call it after connecting to the VDB and before searching 
         """
-        self.videos_collection = Collection("youtube_videos")     
+        self.videos_collection = Collection("youtube_videos")
         self.videos_collection.load()
 
-    def search_VDB_papers(self, queries_embeddings: list[List[float]], top_k: int=5, offset: int=0) ->  orm.search.SearchResult:
-
+    def search_VDB_papers(self, queries_embeddings: list[List[float]], top_k: int = 5, offset: int = 0) -> orm.search.SearchResult:
         """
         This function will return top_k results that is similiar to the query embedding from research_papers collection
         args:
@@ -56,15 +56,15 @@ class VectorDatabase:
             offset: the number of search results to skip from the top
         """
         search_params = {
-            "metric_type": "IP", #inner product
+            "metric_type": "IP",  # inner product
             "offset": offset
         }
         results = self.papers_collection.search(
-            data = queries_embeddings,
-            anns_field = "embedding",
-            param = search_params,
+            data=queries_embeddings,
+            anns_field="embedding",
+            param=search_params,
             output_fields=['title', 'abstract'],
-            limit = top_k
+            limit=top_k
         )
         # pymilvus.orm.search.SearchResult returns search results for all queris with same order
         # pymilvus.orm.search.SearchResult can be considered as an array of pymilvus.orm.search.Hits
@@ -74,8 +74,7 @@ class VectorDatabase:
         # example: entity.get('title'), entity.get('abstract').
         return results
 
-
-    def Search_VDB_videos(self, queries_embeddings: list[List[float]], top_k: int=5, offset: int=0) -> orm.search.SearchResult:
+    def Search_VDB_videos(self, queries_embeddings: list[List[float]], top_k: int = 5, offset: int = 0) -> orm.search.SearchResult:
         """
         This function will return top_k results that is similiar to the query embedding from youtube_videos collection
         args:
@@ -84,17 +83,16 @@ class VectorDatabase:
             offset: the number of search results to skip from the top
         """
         search_params = {
-            "metric_type": "IP", #inner product
+            "metric_type": "IP",  # inner product
             "offset": offset
         }
         results = self.videos_collection.search(
-            data = queries_embeddings,
-            anns_field = "embedding",
-            param = search_params,
+            data=queries_embeddings,
+            anns_field="embedding",
+            param=search_params,
             output_fields=['text', 'start_time', 'video_id'],
-            limit = top_k
+            limit=top_k
         )
-        print(type(results))
         # pymilvus.orm.search.SearchResult returns search results for all queris with same order
         # pymilvus.orm.search.SearchResult can be considered as an array of pymilvus.orm.search.Hits
         # each pymilvus.orm.search.Hits can be considered as an array of pymilvus.orm.search.Hit
@@ -102,9 +100,9 @@ class VectorDatabase:
         # To access value in pymilvus.client.abstract.Entity, use entity.get()
         # example: entity.get('text'), entity.get('start_time'), entity.get('video_id').
         return results
-    
 
-if __name__ == '__main__' :
+
+if __name__ == '__main__':
     vdb = VectorDatabase()
     vdb.VDB_connect()
     vdb.load_papers()
@@ -116,5 +114,3 @@ if __name__ == '__main__' :
     print('#' * 80)
     print(res[0][0].entity.get('text'))
     print('#' * 80)
-
-    
