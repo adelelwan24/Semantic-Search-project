@@ -30,13 +30,14 @@ export default function Search() {
   };
 
   const SearchParams = useSearchParams();
-  const Query = SearchParams ? SearchParams.get("query") : "";
+  const Query = SearchParams ? SearchParams.get("query") : null;
   const Type = SearchParams ? SearchParams.get("type") : 0;
 
-  const { data, isLoading } = useSWR(
+  const { data, isLoading, error } = useSWR(
     `http://127.0.0.1:5030/videos/search?query=${Query}`,
     fetchResults
   );
+
   return (
     <>
       <Header />
@@ -48,24 +49,26 @@ export default function Search() {
         <div className="flex flex-col gap-10 items-center p-6 ">
           <SearchBar />
 
-          <div className="px-80 flex flex-wrap items-center w-full">
-            {data.map((ele) => (
-             <div key={ele.id} className="items-center">
-             {isLoading ? (
-               <Spinner />
-             ) : (
-               data.map((ele) => (
-                 <div key={ele.id}>
-                   <VideoElement
-                     video_id={ele.video_id}
-                     start={ele.start_time}
-                     text={ele.text}
-                   />
-                 </div>
-               ))
-             )}
-           </div>
-            ))}
+
+
+          <div className="flex flex-col items-center w-full">
+            {Query === null || Query === "" ? (
+              <></>
+            ) : isLoading ? (
+              <Spinner />
+            ) : error ? (
+              <>Server Not Working</>
+            ) : (
+              data.map((ele) => (
+                <div key={ele.id}>
+                  <VideoElement
+                    video_id={ele.video_id}
+                    start={ele.start_time}
+                    text={ele.text}
+                  />
+                </div>
+              ))
+            )}
           </div>
           <button
             className={`hover:bg-[#0e9c7d] text-white font-bold py-2 px-4 rounded-full mt-8 flex items-center ${

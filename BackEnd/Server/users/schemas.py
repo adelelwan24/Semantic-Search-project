@@ -3,6 +3,7 @@ from marshmallow import Schema, fields, ValidationError, validates
 from .models import User
 import re
 
+
 class UserSchema(SQLAlchemySchema):
     class Meta:
         model = User
@@ -14,11 +15,11 @@ class UserSchema(SQLAlchemySchema):
     created_at = auto_field()
     email_address = auto_field()
 
+
 class UserCreationSchema(Schema):
     username = fields.Str(required=True)
     password = fields.Str(required=True)
     email_address = fields.Str(required=True)
-
 
     @validates('email_address')
     def validate_email_address(self, value):
@@ -33,7 +34,8 @@ class UserCreationSchema(Schema):
             raise ValidationError('Password must contain uupper case')
         if not any(c.islower() for c in value):
             raise ValidationError('Password must contain lower case')
-            
+
+
 class UserLoginSchema(Schema):
     password = fields.Str(required=True)
     email_address = fields.Str(required=True)
