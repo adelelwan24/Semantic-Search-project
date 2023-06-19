@@ -26,9 +26,9 @@ export default function Home() {
       </section>
       <div className='relative z-0'>
         {/* <Contact/> */}
-        <StarsCanvas/>
+        {/* <StarsCanvas/> */}
       </div>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   )
 }
