@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 
+import { styles } from "@/styles/style";
+
 const Search = () => {
   const router = useRouter();
   const SearchParams = useSearchParams();
@@ -17,7 +19,7 @@ const Search = () => {
     <div>
       <form onSubmit={handleSearch}>
         <input
-          className="px-5 py-1 w-[480px] sm:px-5 sm:py-3 flex-1 text-zinc-200 bg-zinc-800 focus:bg-black rounded-full focus:outline-none focus:ring-[1px] focus:ring-[#0e9c7d] placeholder:text-zinc-400"
+          className="px-5 py-1 w-[480px] sm:px-5 sm:py-3 flex-1 text-zinc-200 bg-tertiary focus:bg-black rounded-full focus:outline-none focus:ring-[1px] focus:ring-[#0e9c7d] placeholder:text-zinc-400 "
           type="text"
           placeholder="What are you looking for...?"
           value={searchQuery}
