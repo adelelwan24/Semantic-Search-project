@@ -11,14 +11,9 @@ class VectorDatabase:
         Call it once you start the server
         """
         load_dotenv()
-        connections.connect(
-            alias="default",
-            user=os.getenv("Milvus_username"),
-            password=os.getenv("Milvus_password"),
-            # Public endpoint obtained from Zilliz Cloud
-            uri=os.getenv("Milvus_uri"),
-            secure=True,
-        )
+        connections.connect("default",
+                  uri=os.getenv("Milvus_uri"),
+                  token=os.getenv("Milvus_token"))
 
     def VDB_disconnect(self):
         """
