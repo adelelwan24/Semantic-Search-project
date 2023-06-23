@@ -33,14 +33,15 @@ const ArticleSearch = ({ id, start, text }) => {
   };
 
   return (
-    <>
+    <div className="bg-gradient-to-r from-[#050816] to-[#100D25]">
+
       <Header />
       <h2 className={`${styles.sectionHeadText} px-20 text-[60px] py-20` }>
             Search in your Articles
           </h2>
-      < section className ="container relative w-full h-screen  mx-auto flex flex-col md:flex-row ">
+      < section className ="container relative w-full h-screen  mx-20 flex flex-col md:flex-row ">
         {/* leftSection */}
-        <div className="md:w-1/2 md:pr-16 ">
+        <div className="md:w-1/2 md:pr-16 animate-slideRight">
           {/* searchBar */}
           <div className="flex items-center relative ">
             <input
@@ -94,17 +95,14 @@ const ArticleSearch = ({ id, start, text }) => {
         </div>
 
         {/* rightSection */}
-        <div className="md:w-1/2 py-">
-          {/* upperRightSection to display related videos */}
-          {/* <div className="flex flex-col w-full ">
-              <h3 className={`${styles.sectionHeadText}  px-20 text-[30px]`}>Related videos</h3>
-          </div> */}
-              <div className="h-full flex items-center justify-center">
+        <div className="md:w-1/2 top-1/2 right-1/2 transform -translate-x-1 -translate-y-24 animate-slideLeft">
+          
+              <div className=" flex  ">
                  <img className="h-400 object-cover z-10" src="/article.png" />
               </div>
         </div>
       </section>    
-    </>
+    </div>
           )
           }
 

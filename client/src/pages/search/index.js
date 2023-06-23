@@ -39,7 +39,7 @@ export default function Search() {
   );
 
   return (
-    <>
+    <div className="bg-gradient-to-r from-[#050816] to-[#100D25]">
       <Header />
       <Head>
         <title>Video Search</title>
@@ -92,6 +92,6 @@ export default function Search() {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }

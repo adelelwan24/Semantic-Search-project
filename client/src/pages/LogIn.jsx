@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React, { useState } from 'react';
 
+import { styles } from "../styles/style";
 import Header from '../components/Header'
 
 
@@ -28,31 +29,31 @@ import { FaFacebookSquare, FaGithubSquare } from 'react-icons/fa';
 
 
     return (
-    <div className="bg-gradient-to-r from-[#1235] to-[#3e94a0]">
+    <div className="bg-gradient-to-r from-[#050816] to-[#100D25]">
       <Header/>
       <section>
         <div className="flex justify-center items-center h-screen">
-          <div className="animate-slideRight shadow-card">
+          <div className="animate-slideRight shadow-card ">
           <form 
-            className="flex flex-col items-center p-8 border border-gray-300 rounded-lg shadow-lg w-120 h-120" 
+            className="flex flex-col items-center p-8 border border-gray-300 rounded-lg shadow-lg w-120 h-120 bg-black-100  " 
             onSubmit={handleLogin}
           >  
             
-            <h2 className="text-2xl font-bold mb-8 ">Log In</h2>
+            <h2 className={styles.sectionHeadText }>Log In</h2>
             
             <input
               type="text"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="p-3 m-2 rounded-lg border border-gray-300 shadow-md w-80"
+              className="bg-tertiary placeholder:text-secondary p-3 m-2 rounded-lg border border-gray-300 shadow-md w-80 "
             />
             <input
               type="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="p-3 m-2 rounded-lg border border-gray-300 shadow-md w-80"
+              className="bg-tertiary p-3 m-2 rounded-lg border border-gray-300 shadow-md w-80 placeholder:text-secondary"
             />
 
             <button type="submit" className="p-3 m-2 rounded-lg border border-gray-300 shadow-md w-32 hover:bg-[#0e9c7d]">
