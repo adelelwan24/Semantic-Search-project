@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React, { useState } from 'react';
-import axios from 'axios';
 
 import Header from '../components/Header'
 
@@ -11,7 +10,7 @@ import { FaFacebookSquare, FaGithubSquare } from 'react-icons/fa';
   const LoginPage = () => {
 
     const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+    const [password, setPassword] = useState('');
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -29,38 +28,30 @@ import { FaFacebookSquare, FaGithubSquare } from 'react-icons/fa';
 
 
     return (
-    <>
+    <div className="bg-gradient-to-r from-[#1235] to-[#3e94a0]">
       <Header/>
       <section>
         <div className="flex justify-center items-center h-screen">
+          <div className="animate-slideRight shadow-card">
           <form 
             className="flex flex-col items-center p-8 border border-gray-300 rounded-lg shadow-lg w-120 h-120" 
             onSubmit={handleLogin}
           >  
+            
+            <h2 className="text-2xl font-bold mb-8 ">Log In</h2>
+            
             <input
-              type="email"
+              type="text"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="p-3 m-2 rounded-lg border border-gray-300 shadow-md w-80"
             />
             <input
               type="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-            />
-
-
-            <h2 className="text-2xl font-bold mb-8 ">Log In</h2>
-
-            <input
-              type="text"
-              placeholder="Username"
-              className="p-3 m-2 rounded-lg border border-gray-300 shadow-md w-80"
-            />
-            <input
-              type="password"
-              placeholder="Password"
               className="p-3 m-2 rounded-lg border border-gray-300 shadow-md w-80"
             />
 
@@ -85,15 +76,17 @@ import { FaFacebookSquare, FaGithubSquare } from 'react-icons/fa';
             </button>
           </div>
           </form>
-
-          <img
-            src="/Login.png"
-            alt="login image"
-            className="w-96 h-96 object-cover rounded-lg shadow-lg ml-8"
-          />
+          </div>
+          <div className="animate-slideLeft">
+            <img
+              src="/Login.png"
+              alt="login image"
+              className="w-96 h-96 object-cover rounded-lg shadow-lg ml-8"
+            />
+          </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

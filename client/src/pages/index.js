@@ -28,7 +28,7 @@ export default function Home() {
         {/* <Contact/> */}
         {/* <StarsCanvas/> */}
       </div>
-      {/* <Footer/> */}
+      <Footer/>
     </div>
   )
 }

@@ -42,7 +42,7 @@ const VideoSearch = ({ id, start, text }) => {
         {/* leftSection */}
         <div className="md:w-1/2 md:pr-16 ">
           {/* searchBar */}
-          <div className="flex items-center relative ">
+          <div className="flex items-center relative mb-4 animate-slideBottom">
             <input
               className="w-full h-10 px-10 rounded-2xl border-none bg-gray-200 shadow-inner text-lg outline-none"
               type="text"
@@ -58,7 +58,7 @@ const VideoSearch = ({ id, start, text }) => {
 
             {/* upload button  */}
             <button
-              className="relative border-none bg-transparent outline-none cursor-pointer ml-[-40px]"
+              className="relative border-none bg-transparent outline-none cursor-pointer ml-[-40px] "
               onClick={handleUploadButtonClick}
             >
               <span className="absolute top-[-10px] left-[-20px] text-white font-bold text-sm opacity-0 transition-opacity duration-200">
@@ -81,7 +81,7 @@ const VideoSearch = ({ id, start, text }) => {
           </div>
 
           {/* videoBox */}
-          <div className="bg-tertiary rounded-[20px]  px-12 min-h-[450px]  flex justify-evenly items-center flex-col relative ">
+          <div className="bg-tertiary rounded-[20px]  px-12 min-h-[450px]  flex justify-evenly items-center flex-col relative animate-slideTop">
             <div className="embed-responsive embed-responsive-16by9">
               <iframe className="embed-responsive-item" src={"https://www.youtube.com/embed/" + id + "?start=" + Math.floor(start)} allowFullScreen />
 
@@ -94,13 +94,9 @@ const VideoSearch = ({ id, start, text }) => {
         </div>
 
         {/* rightSection */}
-        <div className="md:w-1/2 py-">
-          {/* upperRightSection to display related videos */}
-          {/* <div className="flex flex-col w-full ">
-              <h3 className={`${styles.sectionHeadText}  px-20 text-[30px]`}>Related videos</h3>
-          </div> */}
-              <div className="h-full flex items-center justify-center">
-                 <img className="h-400 object-cover z-10" src="/video.png" />
+        <div className="ml-80 md:w-1/2 absolute top-0 left-40 animate-slideLeft">
+              <div className=" flex items-center justify-center ">
+                 <img className="h-400 object-cover " src="/video.png" />
               </div>
         </div>
       </section>    

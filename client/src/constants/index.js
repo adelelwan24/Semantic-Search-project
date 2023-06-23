@@ -5,7 +5,7 @@ export const navLinks = [
     
     {
       id: "searchType",
-      title: "SearchType",
+      title: "Search",
     },
     {
       id: "about",

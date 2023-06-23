@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "type": "module",
     "lint": "next lint"
+
   },
   "dependencies": {
     "@emailjs/browser": "^3.11.0",

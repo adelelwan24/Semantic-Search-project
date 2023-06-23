@@ -37,8 +37,8 @@ const Hero = () => {
 
           {/* Left section */}
         <div className={"flex-1 p-10 flex flex-col justify-center "}>
-          <h1 className="text-6xl  mb-8 font-black text-white animate-slideRight lg:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2">Get to the heart of the matter !</h1>
-          <h2 className="text-3xl font-medium mb-8">find much easier with your Search Mate in your
+          <h1 className="text-6xl  mb-8 font-black text-white animate-slideRight lg:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2 ">Get to the heart of the matter !</h1>
+          <h2 className="text-3xl font-medium mb-8 animate-slideRight">find much easier with your Search Mate in your
           <span className="multiple-text text-[#1ebea6] ml-2"> </span>
           </h2>
             <br/>
