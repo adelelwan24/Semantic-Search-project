@@ -28,7 +28,7 @@ const Header = () => {
     <nav
       className={`${
         styles.paddingX
-      } fixed  w-full flex items-center py-5  z-20 ${
+      } fixed  w-full flex items-center py-5  z-20 rounded-2xl ${
         scrolled ? "bg-primary" : "bg-transparent"
       }`}
     >

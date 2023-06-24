@@ -1,1 +1,14 @@
-<svg fill="#ffffff" height="200px" width="200px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 490.4 490.4" xml:space="preserve" style="--darkreader-inline-fill:#181a1b; --darkreader-inline-stroke:#e8e6e3;" stroke="#ffffff" data-darkreader-inline-fill="" data-darkreader-inline-stroke="" stroke-width="42.1744"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M484.1,454.796l-110.5-110.6c29.8-36.3,47.6-82.8,47.6-133.4c0-116.3-94.3-210.6-210.6-210.6S0,94.496,0,210.796 s94.3,210.6,210.6,210.6c50.8,0,97.4-18,133.8-48l110.5,110.5c12.9,11.8,25,4.2,29.2,0C492.5,475.596,492.5,463.096,484.1,454.796z M41.1,210.796c0-93.6,75.9-169.5,169.5-169.5s169.6,75.9,169.6,169.5s-75.9,169.5-169.5,169.5S41.1,304.396,41.1,210.796z"></path> </g> </g></svg>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
+<svg height="1000px" width="1000px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#ffffff" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #181a1b; --darkreader-inline-stroke: #e8e6e3;" stroke="#ffffff" data-darkreader-inline-stroke="">
+
+<g id="SVGRepo_bgCarrier" stroke-width="0"/>
+
+<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+
+<g id="SVGRepo_iconCarrier"> <style type="text/css"> .st0{fill:#ffff;} </style>
+
+<style class="darkreader darkreader--sync" media="screen"/> <g> <path class="st0" d="M379.379,306.344c17.691-30.174,27.857-65.291,27.857-102.725s-10.166-72.551-27.857-102.725 c-17.692-30.144-42.893-55.346-73.037-73.037C276.168,10.166,241.052,0,203.618,0c-37.433,0-72.55,10.166-102.724,27.858 C70.75,45.549,45.549,70.75,27.857,100.895C10.166,131.069,0,166.186,0,203.62s10.166,72.55,27.857,102.725 c17.692,30.144,42.893,55.346,73.037,73.037c30.174,17.691,65.291,27.858,102.724,27.858c37.434,0,72.55-10.166,102.724-27.858 C336.486,361.69,361.688,336.489,379.379,306.344z M227.934,300.973c-7.791,1.948-15.936,2.981-24.316,2.981 c-8.38,0-16.525-1.033-24.316-2.981c-35.825-8.942-64.095-37.212-73.037-73.037c-1.948-7.791-2.981-15.936-2.981-24.316 s1.033-16.526,2.981-24.316c8.942-35.825,37.212-64.096,73.037-73.038c7.791-1.948,15.936-2.98,24.316-2.98 c8.381,0,16.526,1.033,24.316,2.98c35.825,8.942,64.095,37.212,73.037,73.038c1.948,7.791,2.98,15.936,2.98,24.316 s-1.033,16.526-2.98,24.316C292.03,263.761,263.759,292.032,227.934,300.973z"/> <path class="st0" d="M496.872,423.839l-85.357-85.358c-18.96,29.141-43.896,54.078-73.037,73.038l85.358,85.358 C433.913,506.954,447.134,512,460.354,512s26.441-5.046,36.518-15.124C517.042,476.706,517.042,444.009,496.872,423.839z"/> </g> </g>
+
+</svg>

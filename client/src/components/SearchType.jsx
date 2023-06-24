@@ -128,7 +128,7 @@ const PlayListCard = () => {
 
 const SearchInVideos = () => {
   return (
-    <div className="xs:w-[250px]">
+    <div className="xs:w-[250px] ">
       <motion.div
         variants={fadeIn("right", "spring", 0.5, 0.75)}
         className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card"
@@ -164,7 +164,8 @@ const SearchInVideos = () => {
 
 const SearchType = ({ index, title, image }) => {
   return (
-    <section id="searchType" className="">
+    
+    <section id="searchType" className="bg-[#0f0f1f33]">
       <motion.div variants={textVariant()}>
         <h2 className={`${styles.sectionHeadText} font-serif font-abril-fatface text-4xl font-bold text-[60px]`}>
           Search Type
@@ -193,6 +194,7 @@ const SearchType = ({ index, title, image }) => {
       <br />
       <br />
     </section>
+    
   );
 };
 
