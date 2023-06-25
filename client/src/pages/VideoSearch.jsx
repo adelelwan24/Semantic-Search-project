@@ -4,6 +4,8 @@ import ReactPlayer from "react-player";
 import Header from "../components/Header";
 import Layout from "@/Layout";
 import { styles } from "@/styles/style";
+import SearchBar from "../components/SearchBar";
+
 
 const VideoSearch = ({ id, start, text }) => {
   console.log(start);
@@ -33,7 +35,7 @@ const VideoSearch = ({ id, start, text }) => {
   };
 
   return (
-    <>
+    <div className="bg-gradient-to-r from-[#050816] to-[#100D25]">
       <Header />
       <h2 className={`${styles.sectionHeadText} px-20 text-[60px] py-20` }>
             Search in your videos
@@ -94,13 +96,13 @@ const VideoSearch = ({ id, start, text }) => {
         </div>
 
         {/* rightSection */}
-        <div className="ml-80 md:w-1/2 absolute top-0 left-40 animate-slideLeft">
+        <div className="ml-80 md:w-1/2 absolute  transform -translate-x-105 -translate-y-24 animate-slideLeft ">
               <div className=" flex items-center justify-center ">
-                 <img className="h-400 object-cover " src="/video.png" />
+                 <img className="h-380 object-cover " src="/video.png" />
               </div>
         </div>
       </section>    
-    </>
+    </div>
           )
           }
 

@@ -46,7 +46,7 @@ const Hero = () => {
 
           <button 
             onClick={() => window.location = '/#searchType'}
-            className="bg-[#66B0A5] text-white py-3 px-8 rounded-full animate-slideTop w-[165px] h-[50px] hover:bg-[#66B0A5]transition-colors duration-300 ease-in-out">
+            className="bg-gradient-to-r from-[#66B0A5] to-[#100D25]  text-white py-3 px-8 rounded-full animate-slideTop w-[165px] h-[50px]  hover:bg-[#23c9b0]  transition-colors duration-300 ease-in-out">
           <Link href="/#searchType"  legacyBehavior>
             <a > Search Now ! </a>
           </Link>
@@ -56,7 +56,7 @@ const Hero = () => {
         {/* Right section */}
         <div className="flex-1 h-[80px] sm:bottom-10  animate-zoomIn  delay-2000 ">
           <img 
-            src="/heroimage.png"
+            src="/heroMain.png"
             alt="heroImage"
             layout="responsive"
             width={500}

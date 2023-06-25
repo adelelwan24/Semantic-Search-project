@@ -28,20 +28,20 @@ const SignUpPage = () => {
   };
 
   return (
-  <div className="bg-gradient-to-r from-[#14293d55] to-[#3e94a0]">
+  <div className="bg-gradient-to-r from-[#050816] to-[#100D25]">
     <Header/>
     <section>
       <div className="flex justify-center items-center h-screen gap-10 ">
         <div className="animate-slideRight shadow-card">
           <form  
             onSubmit={handleSignup}
-            className="flex flex-col items-center p-6 border border-gray-300 rounded-lg shadow-lg w-96 h-150"
+            className="flex flex-col items-center p-6 border border-gray-300 rounded-lg shadow-lg w-120 h-120 bg-black-100  w-96 h-150"
           >
             <h2 className="text-[24px] font-bold mb-6">Sign Up</h2>
-            <input className="rounded-lg border-gray-300 focus:outline-none focus:border-gray-400 p-3 w-full mb-4" type="text" placeholder="Username" />
-            <input className="rounded-lg border-gray-300 focus:outline-none focus:border-gray-400 p-3 w-full mb-4" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <input className="rounded-lg border-gray-300 focus:outline-none focus:border-gray-400 p-3 w-full mb-4" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <input className="rounded-lg border-gray-300 focus:outline-none focus:border-gray-400 p-3 w-full mb-4" type="password" placeholder="Confirm Password" />
+            <input className="rounded-lg border border-gray-300 focus:outline-none focus:border-gray-300 p-3 w-full mb-4 bg-tertiary placeholder:text-secondary" type="text" placeholder="Username" />
+            <input className="rounded-lg border border-gray-300 focus:outline-none focus:border-gray-400 p-3 w-full mb-4 bg-tertiary placeholder:text-secondary" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input className="rounded-lg border border-gray-300 focus:outline-none focus:border-gray-400 p-3 w-full mb-4 bg-tertiary placeholder:text-secondary" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <input className="rounded-lg border border-gray-300 focus:outline-none focus:border-gray-400 p-3 w-full mb-4 bg-tertiary placeholder:text-secondary" type="password" placeholder="Confirm Password" />
             <button
               className="p-3 m-2 rounded-lg border border-gray-300 shadow-md w-32 hover:bg-[#0e9c7d]" 
               type="submit"       

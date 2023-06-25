@@ -36,7 +36,7 @@ const Header = () => {
       <Link href="/" legacyBehavior >
         <div className="flex items-center gap-2 cursor-pointer animate-slideRight">
           <img src="/logo-white.svg" alt="Logo" className="w-8 h-8 mr-2" />
-          <p className="text-xl font-bold">
+          <p className="text-xl font-bold ">
             <span className="">Search Mate</span>
           </p>
         </div>
@@ -143,7 +143,7 @@ const Header = () => {
               <button
                 className={`${
                   active === "SignUp" ? "text-white" : "text-secondary"
-                } hover:text-white text-[18px] font-medium cursor-pointer`}
+                } hover:text-white text-[18px] font-medium cursor-pointer `}
                 onClick={() => setActive("SignUp")}
               >
                 <Link legacyBehavior href="/SignUp" >
