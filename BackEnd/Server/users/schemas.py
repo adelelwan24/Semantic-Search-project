@@ -31,7 +31,7 @@ class UserCreationSchema(Schema):
         if len(value) < 8:
             raise ValidationError('Password length must be longer than 8')
         if not any(c.isupper() for c in value):
-            raise ValidationError('Password must contain uupper case')
+            raise ValidationError('Password must contain upper case')
         if not any(c.islower() for c in value):
             raise ValidationError('Password must contain lower case')
 
