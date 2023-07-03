@@ -1,19 +1,21 @@
-from Server.Utils.pre_processor import Pre_Process, Format_Results
-from Server.Utils.vdb import VectorDatabase
-from Server.Utils.model import model
+from Server.search.Utils.pre_processor import Pre_Process, Format_Results
+from Server.search.Utils.vdb import VectorDatabase
+from Server.search.Utils.model import model
 from flask import request, jsonify
 from flask import Blueprint
 
+import requests
 
 
-#### Initiate the Vector Database
+
+# #### Initiate the Vector Database
 vdb = VectorDatabase()
 vdb.connect()
 vdb.load_papers()
 vdb.load_videos()
 
 
-search = Blueprint('seach', __name__)
+search = Blueprint('search', __name__)
 
 
 @search.route('/videos/search')
@@ -27,6 +29,7 @@ def search_video():
 
     results = vdb.search_videos([encoded], offset=offset)
     results = Format_Results(results)
+
     return jsonify(results)
 
 

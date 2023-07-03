@@ -11,8 +11,7 @@ class User(db.Model):
     username = Column(String, unique=True, nullable=False)
     email_address = Column(String, unique=True, nullable=False)
     password_hash = Column(String, nullable=False)
-    #### TODO: Add db migration 
-    # admin = Column(Boolean, server_default=False)
+    admin = Column(Boolean, server_default='False')
     created_at = Column(TIMESTAMP(timezone=True),
                         nullable=False, server_default=text('now()'))
 
