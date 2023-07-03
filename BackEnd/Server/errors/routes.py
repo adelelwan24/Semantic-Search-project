@@ -1,10 +1,14 @@
-from ..Utils.pre_processor import Format_Exception
 from ..auth.auth import AuthError
 from pymilvus.exceptions import MilvusException
 from sqlalchemy.exc import SQLAlchemyError
 from marshmallow import ValidationError
 from flask import jsonify, Blueprint
 from flask_api import status
+
+### Utils
+def Format_Exception(obj) -> str:
+    return str(type(obj)).split(' ')[1].replace("'", '').replace(">", '').split('.')[-1]
+
 
 errors = Blueprint('errors', __name__)
 
