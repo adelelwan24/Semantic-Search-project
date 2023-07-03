@@ -1,6 +1,5 @@
 from .schemas import UserCreationSchema, UserLoginSchema, UserSchema
 from flask import request, abort, jsonify, Blueprint, current_app
-from Server.Utils.utils import Exception_Info
 from sqlalchemy.exc import SQLAlchemyError
 from Server import db, bcrypt
 from flask_api import status
@@ -12,18 +11,16 @@ from Server.auth.auth import requires_auth, requires_admin
 users = Blueprint('users', __name__, url_prefix='/users')
 
 
-# Schemas
+#### Schemas
 userSchema = UserSchema()
 userLoginSchema = UserLoginSchema()
 userCreationSchema = UserCreationSchema()
 
-
+#### Routes
 @users.route('/')
 @users.route('/all')
 @requires_admin
 def all_users(current_user):
-    if current_user:
-        print(userSchema.dump(current_user))
     users = User.query.all()
     return jsonify(userSchema.dump(users, many=True))
 
@@ -50,7 +47,6 @@ def create_user():
         db.session.commit()
     except SQLAlchemyError as exe:
         db.session.rollback()
-        # Exception_Info()
         raise exe
 
     return jsonify(userSchema.dump(user)), status.HTTP_201_CREATED
@@ -65,9 +61,7 @@ def login_user():
         abort(status.HTTP_404_NOT_FOUND, "Email Doesn't Exist")
         
     if user and bcrypt.check_password_hash(user.password_hash, data['password']):
-        #### TODO : Migrate the database to add the admin
-        #### TODO : change the admin in the payload
-        payload = {'id' : user.id, 'admin' :  True, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}
+        payload = {'id' : user.id, 'admin' :  user.admin, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}
         token = jwt.encode(payload, current_app.config.get('SECRET_KEY'))
 
         return jsonify({'messege': 'Successfully Logged In',
@@ -85,7 +79,6 @@ def delete_user(current_user, id):
         db.session.commit()
     except SQLAlchemyError as exe:
         db.session.rollback()
-        # Exception_Info()        # DEBUG
         raise exe
 
     return jsonify(userSchema.dump(current_user)), status.HTTP_204_NO_CONTENT
