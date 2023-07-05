@@ -1,6 +1,7 @@
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, current_app
+from flask_caching import Cache
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
@@ -12,6 +13,7 @@ cros = CORS()
 marsh = Marshmallow()
 bcrypt = Bcrypt()
 migrate = Migrate()
+cach = Cache()
 
 # @app.after_request
 # def after_request(response):
@@ -29,6 +31,7 @@ def create_app(file_name=Config) -> Flask:
     app.config.from_object(file_name)
 
     db.init_app(app)
+    cach.init_app(app)
     cros.init_app(app)
     marsh.init_app(app)
     bcrypt.init_app(app)
