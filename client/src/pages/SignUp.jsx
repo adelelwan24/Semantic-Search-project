@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from 'next/image';
 import Header from '../components/Header'
 
+import { useRouter } from 'next/navigation'
 import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,7 +17,7 @@ const SignUpPage = () => {
   const [email_address, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
-
+  const router = useRouter();
 
 
   const handleSignup = async (e) => {
@@ -35,21 +36,23 @@ const SignUpPage = () => {
         }
       });
 
+      console.log(response)
+
       if (response.status === 201) {
-        const { token } = response.data;
-        /////////////////////////////////////
-                router.push('/LogIn');
+          router.push('/LogIn');
       } else {
         throw new Error('Sign Up failed');
       }
     } catch (error) {
-      if (error.response) {
-        // Error response received from the server
-        setError(error.response.data.error);
-      } else {
-        // Error without a response (e.g., network error)
-        setError('An error occurred. Please try again later.');
-      }
+      router.push('/SignUp');
+      // Need to be FIXED #############################################################
+      // if (error.response) {
+      //   // Error response received from the server
+      //   setError(error.response.data.error);
+      // // } else {
+      // //   // Error without a response (e.g., network error)
+      // //   setError('An error occurred. Please try again later.');
+      // }
     }
   };
 
@@ -64,7 +67,7 @@ const SignUpPage = () => {
             className="flex flex-col items-center p-6 border border-gray-300 rounded-lg shadow-lg w-120 h-120 bg-black-100  w-96 h-150"
           >
             <h2 className="text-[24px] font-bold mb-6">Sign Up</h2>
-            <input className="rounded-lg border border-gray-300 focus:outline-none focus:border-gray-300 p-3 w-full mb-4 bg-tertiary placeholder:text-secondary" type="text" placeholder="Username" />
+            <input className="rounded-lg border border-gray-300 focus:outline-none focus:border-gray-300 p-3 w-full mb-4 bg-tertiary placeholder:text-secondary" type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
             <input className="rounded-lg border border-gray-300 focus:outline-none focus:border-gray-400 p-3 w-full mb-4 bg-tertiary placeholder:text-secondary" type="email" placeholder="Email" value={email_address} onChange={(e) => setEmail(e.target.value)} />
             <input className="rounded-lg border border-gray-300 focus:outline-none focus:border-gray-400 p-3 w-full mb-4 bg-tertiary placeholder:text-secondary" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
             <input className="rounded-lg border border-gray-300 focus:outline-none focus:border-gray-400 p-3 w-full mb-4 bg-tertiary placeholder:text-secondary" type="password" placeholder="Confirm Password" />
