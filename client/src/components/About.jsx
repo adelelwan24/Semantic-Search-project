@@ -88,7 +88,7 @@ export default function App() {
         }}
         navigation={false}
         modules={[Autoplay, Pagination, Navigation,EffectCoverflow]}
-        className="mySwiper  animate-zoomIn ml-10 px-10"
+        className="mySwiper  animate-zoomIn ml-10 "
       >
         {persons.map((person, index) => (
         <SwiperSlide key={index}>

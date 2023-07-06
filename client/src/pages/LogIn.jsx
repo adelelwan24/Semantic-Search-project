@@ -24,11 +24,8 @@ const LoginPage = () => {
     }
 
     try {
-      const response = await axios.post('/api/login', { email, password }, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}` // Include the Bearer token in the header
-        }
+      const response = await axios.post('/users/login', { email_address, password }, {
+        
       });
 
       if (response.status === 200) {
@@ -69,7 +66,7 @@ const LoginPage = () => {
                 type="text"
                 id="email"
                 placeholder="Email"
-                value={email}
+                value={email_address}
                 onChange={(e) => setEmail(e.target.value)}
                 className="bg-tertiary placeholder:text-secondary p-3 m-2 rounded-lg border border-gray-300 shadow-md w-80"
               />
