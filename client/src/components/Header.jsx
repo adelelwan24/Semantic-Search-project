@@ -80,7 +80,7 @@ const Header = () => {
           </button>
             <Link href="/SignUp" legacyBehavior>
             <button
-              className="bg-[#486d68] hover:bg-[#1ebea6] transition-colors duration-300 ease-in-out text-white text-[18px] animate-slideLeft font-medium py-2 px-6 rounded-full"
+              className="bg-[#24BAB8] hover:bg-gradient-to-r from-[#66B0A5] to-[#100D25] transition-colors duration-300 ease-in-out text-white text-[18px] animate-slideLeft font-medium py-2 px-6 rounded-full"
               onClick={() => setActive("signup")}
             >
               <a>Sign Up</a>
