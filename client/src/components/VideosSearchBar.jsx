@@ -3,7 +3,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 
 import { styles } from "@/styles/style";
 
-const Search = () => {
+const VideosSearchBar = () => {
   const router = useRouter();
   const SearchParams = useSearchParams();
   const query = SearchParams ? SearchParams.get("query") : "";
@@ -12,7 +12,7 @@ const Search = () => {
   const handleSearch = (event) => {
     event.preventDefault();
     const encodedquery = encodeURI(searchQuery);
-    router.push(`/search?query=${encodedquery}&type=${0}`);
+    router.push(`/search/videos?query=${encodedquery}`);
   };
 
   return (
@@ -36,4 +36,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default VideosSearchBar;
