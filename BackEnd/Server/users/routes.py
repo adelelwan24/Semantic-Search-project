@@ -16,6 +16,7 @@ userSchema = UserSchema()
 userLoginSchema = UserLoginSchema()
 userCreationSchema = UserCreationSchema()
 
+
 #### Routes
 @users.route('/')
 @users.route('/all')
@@ -23,17 +24,6 @@ userCreationSchema = UserCreationSchema()
 def all_users(current_user):
     users = User.query.all()
     return jsonify(userSchema.dump(users, many=True))
-
-
-@users.route('/<int:id>')
-@requires_auth
-def get_user_by_id(current_user, id):
-    if current_user.id != id:
-        abort(status.HTTP_403_FORBIDDEN, 'Forbidden Access To Resource')
-    user = User.query.filter(User.id == id).first_or_404('User Not Found')
-    return jsonify(userSchema.dump(user))
-
-
 
 
 @users.route('/create', methods=['post'])
@@ -67,6 +57,24 @@ def login_user():
         return jsonify({'messege': 'Successfully Logged In',
                         'token' : token})
     abort(status.HTTP_401_UNAUTHORIZED, "Password Is Invalid")
+
+
+@users.route('/info')
+@requires_auth
+def get_user_info(current_user):
+    if not current_user:
+        abort(status.HTTP_403_FORBIDDEN, 'Forbidden Access To Resource')
+    user = User.query.filter(User.id == current_user.id).first_or_404('User Not Found')
+    return jsonify(userSchema.dump(user))
+
+
+@users.route('/<int:id>')
+@requires_auth
+def get_user_by_id(current_user, id):
+    if current_user.id != id:
+        abort(status.HTTP_403_FORBIDDEN, 'Forbidden Access To Resource')
+    user = User.query.filter(User.id == id).first_or_404('User Not Found')
+    return jsonify(userSchema.dump(user))
 
 
 @users.route('/<int:id>', methods=['delete'])

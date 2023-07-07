@@ -68,12 +68,11 @@ class UserTest(unittest.TestCase):
     Write at least one test for each test for successful operation and for expected errors.
     """
 
-    def test_get_users(self):
+    def test_get_users_not_admin(self):
         res = self.client().get('/users/', headers = self.headers)
-        data = res.json
 
-        self.assertEqual(res.status_code , 200)
-        self.assertIsInstance(data, list)
+        self.assertEqual(res.status_code , 403)
+
 
 
     def test_get_one_user(self):
@@ -87,6 +86,16 @@ class UserTest(unittest.TestCase):
         self.assertTrue(data['email_address'])
         self.assertTrue(data['created_at'])
 
+    def test_get_user_info(self):
+        res = self.client().get('/users/info', headers = self.headers)
+        data = res.json
+
+        self.assertEqual(res.status_code , 200)
+        self.assertIsInstance(data, dict)
+        self.assertTrue(data['id'])
+        self.assertTrue(data['username'])
+        self.assertTrue(data['email_address'])
+        self.assertTrue(data['created_at'])
     
     def test_create_user(self):
         payload = {

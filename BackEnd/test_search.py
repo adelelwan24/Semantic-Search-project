@@ -48,8 +48,8 @@ class SearchTest(unittest.TestCase):
         if data:
             keys = data[0].keys()
             self.assertIn('id', keys)
-            self.assertIn('video_id', keys)
             self.assertIn('text', keys)
+            self.assertIn('video_id', keys)
             self.assertIn('start_time', keys)
 
     def test_search_papers(self):
@@ -63,8 +63,8 @@ class SearchTest(unittest.TestCase):
         if data:
             keys = data[0].keys()
             self.assertIn('id', keys)
-            self.assertIn('video_id', keys)
-            self.assertIn('text', keys)
+            self.assertIn('title', keys)
+            self.assertIn('abstract', keys)
 
     
 # Make the tests conveniently executable

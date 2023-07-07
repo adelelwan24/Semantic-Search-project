@@ -36,9 +36,9 @@ const VideoCard = () => {
           <hr className="w-20 h-1 mx-auto my-1 border-1 bg-yellow-400" />
           <h3 className="text-secondary text-[16px] font-bold text-center">
             {" "}
-            find much easier in your Videos
+            Search much easier in our Videos
           </h3>
-          <Link legacyBehavior href="/VideoSearch">
+          <Link legacyBehavior href="/search/videos">
             <button className="bg-[#24BAB8] text-white py-3 px-8 rounded-full w-[165px] h-[50px] hover:bg-[#66B0A5]transition-colors duration-300 ease-in-out">
               <a className="text-white font-bold">search now !</a>
             </button>
@@ -69,14 +69,14 @@ const ArticleCard = () => {
           />
           <h2 className="text-white text-[20px] font-bold text-center">
             {" "}
-            Articles{" "}
+            Papers{" "}
           </h2>
           <hr className="w-20 h-1 mx-auto my-1 border-1 bg-yellow-400" />
           <h3 className="text-secondary text-[16px] font-bold text-center">
             {" "}
-            find much easier in your playlists
+            Search much easier in research papers
           </h3>
-          <Link legacyBehavior href="/ArticleSearch">
+          <Link legacyBehavior href="/search/papers">
             <button className="bg-[#24BAB8] text-white py-3 px-8 rounded-full w-[165px] h-[50px] hover:bg-[#66B0A5]transition-colors duration-300 ease-in-out">
               <a className="text-white font-bold">search now !</a>
             </button>
@@ -145,13 +145,16 @@ const SearchInVideos = () => {
             src="/playlist.png"
             className="w-full h-full object-cover overflow-hidden rounded-2xl"
           />
-          
+          <h2 className="text-white text-[20px] font-bold text-center">
+            {" "}
+            Your Video{" "}
+          </h2>
           <hr className="w-20 h-1 mx-auto my-1 border-1 bg-yellow-400" />
           <h3 className="text-secondary text-[16px] font-bold text-center">
             {" "}
-            Search in your Videos
+            Search much easier in your Videos
           </h3>
-          <Link legacyBehavior href="/search">
+          <Link legacyBehavior href="/VideoSearch">
             <button className="bg-[#24BAB8] text-white py-3 px-8 rounded-full w-[165px] h-[50px] hover:bg-[#66B0A5]transition-colors duration-300 ease-in-out">
               <a className="text-white font-bold">search now !</a>
             </button>

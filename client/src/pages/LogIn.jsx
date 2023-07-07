@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from './api/axios';
 import Cookies from 'js-cookie';
 import { AiFillGoogleCircle } from 'react-icons/ai';
 import { FaFacebookSquare, FaGithubSquare } from 'react-icons/fa';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation'
 
 import Header from '../components/Header';
 import { styles } from "../styles/style";
 
 const LoginPage = () => {
+
   const router = useRouter();
-  const [email, setEmail] = useState('');
+  const [email_address, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
@@ -18,16 +19,15 @@ const LoginPage = () => {
     e.preventDefault();
 
     // Perform client-side validation
-    if (!email || !password) {
+    if (!email_address || !password) {
       alert('Please fill in all fields.');
       return;
     }
 
     try {
-      const response = await axios.post('/api/login', { email, password }, {
+      const response = await axios.post('/users/login', { email_address, password } , {
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}` // Include the Bearer token in the header
+          "Content-Type": 'application/json'
         }
       });
 
@@ -39,6 +39,7 @@ const LoginPage = () => {
         
         // Redirect to the home page
         router.push('/');
+        
       } else {
         throw new Error('Login failed');
       }
@@ -69,7 +70,7 @@ const LoginPage = () => {
                 type="text"
                 id="email"
                 placeholder="Email"
-                value={email}
+                value={email_address}
                 onChange={(e) => setEmail(e.target.value)}
                 className="bg-tertiary placeholder:text-secondary p-3 m-2 rounded-lg border border-gray-300 shadow-md w-80"
               />
@@ -84,6 +85,7 @@ const LoginPage = () => {
 
               <button
                 type="submit"
+                // type="button" onClick={() => router.push('/')}
                 className="p-3 m-2 rounded-lg border border-gray-300 shadow-md w-32 hover:bg-[#0e9c7d]"
               >
                 Log In
