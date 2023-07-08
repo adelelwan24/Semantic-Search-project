@@ -63,13 +63,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd Semantic-Search-project/BackEnd
+          cd BackEnd
           pwd
           python -m pip install -r requirements.txt
 
       - name: Running tests
         run: |
-          cd Semantic-Search-project/BackEnd
+          cd BackEnd
           pwd
           python -m unittest discover
 
