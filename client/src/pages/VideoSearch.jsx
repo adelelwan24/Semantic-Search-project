@@ -1,81 +1,93 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import Header from "../components/Header";
-import { styles } from "@/styles/style";
-
+import Spinner from "@/components/Spinner";
+import UserVideoElement from "@/components/UserVideoElement";
 
 const VideoSearchBar = () => {
-  const [url, setUrl] = useState('');
-  const [error, setError] = useState('');
+  const [url, setUrl] = useState("");
+  const [videoID, setVideoID] = useState("");
+  const [error, setError] = useState(false);
+  const [loadingVideo, setLoadingVideo] = useState(false);
 
-  const handleInputChange = (event) => {
-    setUrl(event.target.value);
-    setError('');
-  };
-
-  const handleSearch = () => {
-    // Remove leading and trailing whitespace from the URL
-    const trimmedUrl = url.trim();
-
-    // Validate the URL format
-    const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
-    const youtubePattern = /^(https?:\/\/)?(www\.)?youtube\.com\/watch\?v=([\w-]{11})/;
-    const youtubeQueryPattern = /^(https?:\/\/)?(www\.)?youtube\.com\/watch\?([\w-]+=[\w-]+&)*v=([\w-]{11})/;
-
-    if (urlPattern.test(trimmedUrl)) {
-      // Direct video URL
-      playVideo(trimmedUrl);
-    } else if (youtubePattern.test(trimmedUrl) || youtubeQueryPattern.test(trimmedUrl)) {
-      // YouTube video URL
-      const videoId = youtubePattern.exec(trimmedUrl)[3] || youtubeQueryPattern.exec(trimmedUrl)[5];
-      const youtubeEmbedUrl = `https://www.youtube.com/embed/${videoId}`;
-      playVideo(youtubeEmbedUrl);
-    } else {
-      setError('Error, please enter a valid video URL');
+  const delete_token = async (token) => {
+    try {
+      let response = await fetch("http://127.0.0.1:5001/removeindex", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token: token }),
+      });
+      if (!response.ok) {
+        setError(true);
+      }
+    } catch (error) {
+      setError(true);
     }
-
-    // Clear the URL in the search bar
-    setUrl('');
   };
 
-  const playVideo = (videoUrl) => {
-    // Clear the error
-    setError('');
-
-    // Update the video source with the provided URL
-    const videoContainer = document.getElementById('content-video');
-    videoContainer.innerHTML = `<iframe src="${videoUrl}" frameborder="0" allowfullscreen style="width: 640px; height: 360px; border: 1px solid #24BAB8;"></iframe>`;
+  const sendVideoURL = async () => {
+    var token = localStorage.getItem("token");
+    if (token) {
+      delete_token(token);
+    }
+    setLoadingVideo(true);
+    try {
+      let response = await fetch("http://127.0.0.1:5001/storevideo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ url: url }),
+      });
+      if (!response.ok) {
+        setError(true);
+        setLoadingVideo(false);
+        return;
+      }
+      let resJson = await response.json();
+      console.log(resJson);
+      setLoadingVideo(false);
+      setError(false);
+      setVideoID(resJson.video_id);
+      localStorage.setItem("token", resJson.token);
+    } catch (error) {
+      setError(true);
+      setLoadingVideo(false);
+    }
   };
 
   return (
-     <div className='bg-gradient-to-r from-[#050816] to-[#100D25] min-h-screen'>
-      <Header/>
-      {/* <h1 className=''> search in your videos</h1> */}
-      <div className='w-[680px] pl-[40px] pt-32'>
-        <div className="flex animate-slideBottom">
+    <div className="bg-gradient-to-r from-[#050816] to-[#100D25] min-h-screen">
+      <Header />
+      {/* <h1 className=""> search in your videos</h1> */}
+      <div className="w-6/12 pl-5 pt-32 h-full">
+        <div className="flex animate-slideBottom ">
           <input
             type="text"
-            className="border border-gray-400 rounded-l px-4 py-2 w-full"
+            className="border border-gray-400 rounded-l px-4 py-2 w-full mb-4"
             placeholder="Paste a video URL"
             value={url}
-            onChange={handleInputChange}
+            onChange={(e) => setUrl(e.target.value)}
           />
           <button
-            className="bg-[#24BAB8] text-white px-4 py-2 rounded-r"
-            onClick={handleSearch}
+            className="bg-[#24BAB8] text-white w-32 px-4 py-2 rounded-r mb-4"
+            onClick={sendVideoURL}
           >
-            Search
+            <span>get video</span>
           </button>
         </div>
-        {error && (
-          <div className="bg-red-200 text-red-800 px-4 py-2 rounded mt-4">
-            {error}
-          </div>
-        )}
-        <div className="mt-4 animate-slideTop">
-          <div
-            id="content-video"
-            className="border border-[#24BAB8] rounded-lg h-[360px] w-[640px]"
-          />
+        {/* the video elemnt */}
+        <div className="h-5/6 rounded flex justify-center">
+          {loadingVideo ? (
+            <Spinner />
+          ) : error ? (
+            <>there was an error loading the video</>
+          ) : videoID ? (
+            <UserVideoElement video_id={videoID} />
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>
