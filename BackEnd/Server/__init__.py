@@ -5,7 +5,6 @@ from flask_caching import Cache
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
-from Server.config import Config
 
 
 db = SQLAlchemy()
@@ -26,7 +25,7 @@ cach = Cache()
 #     db.create_all()
 
 
-def create_app(file_name=Config) -> Flask:
+def create_app(file_name) -> Flask:
     app = Flask(__name__)
     app.config.from_object(file_name)
 

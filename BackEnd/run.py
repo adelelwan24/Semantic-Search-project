@@ -1,6 +1,7 @@
 from Server import create_app, db
+from Server.config import Config
 
-app = create_app()
+app = create_app(Config)
 
 # try:
 #     with app.app_context():
