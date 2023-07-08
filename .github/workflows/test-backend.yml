@@ -1,0 +1,79 @@
+name: build and deploy
+
+on: ['push', 'pull_request']
+
+jobs:
+  Test_BackEnd:
+    runs-on: ubuntu-latest
+    environment:
+      name: testing
+    env:
+      SECRET_KEY: ${{secrets.SECRET_KEY}}
+      #### TEST DATABASE
+      TEST_DATABASE_USERNAME: ${{secrets.TEST_DATABASE_USERNAME}}
+      TEST_DATABASE_PASSWORD: ${{secrets.TEST_DATABASE_PASSWORD}}
+      TEST_DATABASE_HOSTNAME: ${{secrets.TEST_DATABASE_HOSTNAME}}
+      TEST_DATABASE_PORT: ${{secrets.TEST_DATABASE_PORT}}
+      TEST_DATABASE_NAME: ${{secrets.TEST_DATABASE_NAME}}
+      SQLALCHEMY_TRACK_MODIFICATIONS: False
+
+      #### Connect To Vector Database
+      Milvus_token: ${{secrets.Milvus_token}}
+      Milvus_uri: ${{secrets.Milvus_uri}}
+
+      #### model name
+      MODEL_NAME: 'sentence-transformers/msmarco-bert-base-dot-v5'
+      #### Caching in Test
+      TEST_CACHE_TYPE: NullCache 
+
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres
+        # Provide the password for postgres
+        env:
+          POSTGRES_PASSWORD: ${{secrets.TEST_DATABASE_PASSWORD}}
+          POSTGRES_DB: ${{secrets.TEST_DATABASE_NAME}}
+        ports:
+          - 5432:5432          
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+
+      - name: Pulling git repo
+        uses: actions/checkout@v3
+      
+      - name: Say hello adel
+        run: echo 'Hello, Adel!!'
+        
+      - name: Install python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' 
+          cache: 'pip'
+
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+
+      - name: Install dependencies
+        run: |
+          cd Semantic-Search-project/BackEnd
+          pwd
+          python -m pip install -r requirements.txt
+
+      - name: Running tests
+        run: |
+          cd Semantic-Search-project/BackEnd
+          pwd
+          python -m unittest discover
+
+
+      
+  
+  
