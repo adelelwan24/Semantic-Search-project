@@ -1,0 +1,59 @@
+version: '3.9'
+services:
+  api:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - 5000:5000
+    # env_file:
+    #   - ./.env
+    environment:
+    #### DATABASE
+      - DATABASE_HOSTNAME=db
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=01003347700
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=semantic
+      - SECRET_KEY=55093aebdaa480b245014b5c553bb031
+      #### TEST DATABASE
+      - TEST_DATABASE_HOSTNAME=db_test
+      - TEST_DATABASE_USERNAME=postgres
+      - TEST_DATABASE_PASSWORD=01003347700
+      - TEST_DATABASE_PORT=5432
+      - TEST_DATABASE_NAME=test
+      #### CACHING
+      - CACHE_TYPE=redis
+      - CACHE_REDIS_HOST=cache
+      - CACHE_REDIS_PORT=6379
+      - CACHE_REDIS_DB=0
+      - CACHE_DEFAULT_TIMEOUT=500
+      - TEST_CACHE_TYPE=NullCache  
+      #### VECTOR DATABASE
+      - Milvus_token=60a2be3c4af59ccaa32d0c92532182bbda5d674a9b3db1695656dc1d021f0d6f572a8f41b018f53e03014b251178a6dda730229f
+      - Milvus_uri=https://in03-0453d807de4873c.api.gcp-us-west1.zillizcloud.com
+
+    # volumes:
+    #   - ./:/usr/src/app:ro
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=01003347700
+      - POSTGRES_DB=semantic
+
+  db_test:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=01003347700
+      - POSTGRES_DB=test
+  
+  cache:
+    image: redis
+      
+
+#     volumes:
+#       - postgres-db:/var/lib/postgresql/data
+
+# volumes:
+#   postgres-db:
