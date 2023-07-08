@@ -8,6 +8,8 @@ import  Contact from '../components/Contact'
 import  About from '../components/About'
 import Footer from '@/components/Footer'
 
+import Swiper from 'swiper'
+
 
 import { StarsCanvas } from '@/components'
 
@@ -21,7 +23,7 @@ export default function Home() {
       </div>
       <section>
         <SearchType/>
-        {/* <About/> */}
+        <About/>
         <Contact/>
       </section>
       <div className='relative z-0'>

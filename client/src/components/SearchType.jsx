@@ -39,7 +39,7 @@ const VideoCard = () => {
             find much easier in your Videos
           </h3>
           <Link legacyBehavior href="/VideoSearch">
-            <button className="bg-[#66B0A5] text-white py-3 px-8 rounded-full w-[165px] h-[50px] hover:bg-[#66B0A5]transition-colors duration-300 ease-in-out">
+            <button className="bg-[#24BAB8] text-white py-3 px-8 rounded-full w-[165px] h-[50px] hover:bg-[#66B0A5]transition-colors duration-300 ease-in-out">
               <a className="text-white font-bold">search now !</a>
             </button>
           </Link>
@@ -77,7 +77,7 @@ const ArticleCard = () => {
             find much easier in your playlists
           </h3>
           <Link legacyBehavior href="/ArticleSearch">
-            <button className="bg-[#66B0A5] text-white py-3 px-8 rounded-full w-[165px] h-[50px] hover:bg-[#66B0A5]transition-colors duration-300 ease-in-out">
+            <button className="bg-[#24BAB8] text-white py-3 px-8 rounded-full w-[165px] h-[50px] hover:bg-[#66B0A5]transition-colors duration-300 ease-in-out">
               <a className="text-white font-bold">search now !</a>
             </button>
           </Link>
@@ -116,7 +116,7 @@ const PlayListCard = () => {
             find much easier in your playlists
           </h3>
           <Link legacyBehavior href="/PlayListSearch">
-            <button className="bg-[#66B0A5] text-white py-3 px-8 rounded-full w-[165px] h-[50px] hover:bg-[#66B0A5]transition-colors duration-300 ease-in-out">
+            <button className="bg-[#24BAB8] text-white py-3 px-8 rounded-full w-[165px] h-[50px] hover:bg-[#66B0A5]transition-colors duration-300 ease-in-out">
               <a className="text-white font-bold">search now !</a>
             </button>
           </Link>
@@ -152,7 +152,7 @@ const SearchInVideos = () => {
             Search in your Videos
           </h3>
           <Link legacyBehavior href="/search">
-            <button className="bg-[#66B0A5] text-white py-3 px-8 rounded-full w-[165px] h-[50px] hover:bg-[#66B0A5]transition-colors duration-300 ease-in-out">
+            <button className="bg-[#24BAB8] text-white py-3 px-8 rounded-full w-[165px] h-[50px] hover:bg-[#66B0A5]transition-colors duration-300 ease-in-out">
               <a className="text-white font-bold">search now !</a>
             </button>
           </Link>
@@ -165,7 +165,7 @@ const SearchInVideos = () => {
 const SearchType = ({ index, title, image }) => {
   return (
     
-    <section id="searchType" className="bg-[#0f0f1f33]">
+    <section id="searchType" className="bg-[#0f0f1f33] pt-24">
       <motion.div variants={textVariant()}>
         <h2 className={`${styles.sectionHeadText} font-serif font-abril-fatface text-4xl font-bold text-[60px]`}>
           Search Type

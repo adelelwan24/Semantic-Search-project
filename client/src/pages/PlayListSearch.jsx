@@ -28,7 +28,7 @@ function Videos() {
   }
 
   return (
-    <div>
+    <div className='bg-gradient-to-r from-[#050816] to-[#100D25] min-h-screen'>
       {videos.map(video => (
         <div key={video.id}>
           <h2>{video.title}</h2>

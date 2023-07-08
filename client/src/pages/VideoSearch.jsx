@@ -1,109 +1,85 @@
-import Link from "next/link";
-import { useState,useEffect } from "react";
-import ReactPlayer from "react-player";
+import React, { useState } from 'react';
 import Header from "../components/Header";
-import Layout from "@/Layout";
 import { styles } from "@/styles/style";
-import SearchBar from "../components/SearchBar";
 
 
-const VideoSearch = ({ id, start, text }) => {
-  console.log(start);
+const VideoSearchBar = () => {
+  const [url, setUrl] = useState('');
+  const [error, setError] = useState('');
 
-  const [videoUrl, setVideoUrl] = useState("");
-
-  const handleVideoUrlChange = (event) => {
-    setVideoUrl(event.target.value);
+  const handleInputChange = (event) => {
+    setUrl(event.target.value);
+    setError('');
   };
 
-  const handleUploadButtonClick = (event) => {
-    event.preventDefault();
-    document.getElementById("fileInput").click();
-  };
+  const handleSearch = () => {
+    // Remove leading and trailing whitespace from the URL
+    const trimmedUrl = url.trim();
 
-  const handleFileInputChange = (event) => {
-    const file = event.target.files[0];
-    const videoUrl = URL.createObjectURL(file);
-    setVideoUrl(videoUrl);
-  };
+    // Validate the URL format
+    const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+    const youtubePattern = /^(https?:\/\/)?(www\.)?youtube\.com\/watch\?v=([\w-]{11})/;
+    const youtubeQueryPattern = /^(https?:\/\/)?(www\.)?youtube\.com\/watch\?([\w-]+=[\w-]+&)*v=([\w-]{11})/;
 
-  const handlePlayPauseButtonClick = () => {
-    const player = document.getElementById("reactPlayer");
-    if (player) {
-      player.paused ? player.play() : player.pause();
+    if (urlPattern.test(trimmedUrl)) {
+      // Direct video URL
+      playVideo(trimmedUrl);
+    } else if (youtubePattern.test(trimmedUrl) || youtubeQueryPattern.test(trimmedUrl)) {
+      // YouTube video URL
+      const videoId = youtubePattern.exec(trimmedUrl)[3] || youtubeQueryPattern.exec(trimmedUrl)[5];
+      const youtubeEmbedUrl = `https://www.youtube.com/embed/${videoId}`;
+      playVideo(youtubeEmbedUrl);
+    } else {
+      setError('Error, please enter a valid video URL');
     }
+
+    // Clear the URL in the search bar
+    setUrl('');
+  };
+
+  const playVideo = (videoUrl) => {
+    // Clear the error
+    setError('');
+
+    // Update the video source with the provided URL
+    const videoContainer = document.getElementById('content-video');
+    videoContainer.innerHTML = `<iframe src="${videoUrl}" frameborder="0" allowfullscreen style="width: 640px; height: 360px; border: 1px solid #24BAB8;"></iframe>`;
   };
 
   return (
-    <div className="bg-gradient-to-r from-[#050816] to-[#100D25]">
-      <Header />
-      <h2 className={`${styles.sectionHeadText} px-20 text-[60px] py-20` }>
-            Search in your videos
-          </h2>
-      < section className ="container relative w-full h-screen  mx-auto flex flex-col md:flex-row ">
-        {/* leftSection */}
-        <div className="md:w-1/2 md:pr-16 ">
-          {/* searchBar */}
-          <div className="flex items-center relative mb-4 animate-slideBottom">
-            <input
-              className="w-full h-10 px-10 rounded-2xl border-none bg-gray-200 shadow-inner text-lg outline-none"
-              type="text"
-              placeholder="Paste video URL here.."
-              value={videoUrl}
-              onChange={handleVideoUrlChange}
-            />
-
-            <label className="absolute top-0 right-0 w-24 h-10 text-white bg-blue-900 cursor-pointer border border-white rounded-full flex items-center justify-center">
-              Upload
-              <input type="file" id="fileInput" className="hidden" onChange={handleFileInputChange} />
-            </label>
-
-            {/* upload button  */}
-            <button
-              className="relative border-none bg-transparent outline-none cursor-pointer ml-[-40px] "
-              onClick={handleUploadButtonClick}
-            >
-              <span className="absolute top-[-10px] left-[-20px] text-white font-bold text-sm opacity-0 transition-opacity duration-200">
-                Upload
-              </span>
-              {/* <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M12 2v8m0 0v8m0-8h8m-8 0H4" />
-                </svg> */}
-            </button>
-          </div>
-
-          {/* videoBox */}
-          <div className="bg-tertiary rounded-[20px]  px-12 min-h-[450px]  flex justify-evenly items-center flex-col relative animate-slideTop">
-            <div className="embed-responsive embed-responsive-16by9">
-              <iframe className="embed-responsive-item" src={"https://www.youtube.com/embed/" + id + "?start=" + Math.floor(start)} allowFullScreen />
-
-            </div>
-            <button
-              className="absolute top-0 left-0 h-full w-full bg-transparent"
-              onClick={handlePlayPauseButtonClick}
-            ></button>
-          </div>
+     <div className='bg-gradient-to-r from-[#050816] to-[#100D25] min-h-screen'>
+      <Header/>
+      {/* <h1 className=''> search in your videos</h1> */}
+      <div className='w-[680px] pl-[40px] pt-32'>
+        <div className="flex animate-slideBottom">
+          <input
+            type="text"
+            className="border border-gray-400 rounded-l px-4 py-2 w-full"
+            placeholder="Paste a video URL"
+            value={url}
+            onChange={handleInputChange}
+          />
+          <button
+            className="bg-[#24BAB8] text-white px-4 py-2 rounded-r"
+            onClick={handleSearch}
+          >
+            Search
+          </button>
         </div>
-
-        {/* rightSection */}
-        <div className="ml-80 md:w-1/2 absolute  transform -translate-x-105 -translate-y-24 animate-slideLeft ">
-              <div className=" flex items-center justify-center ">
-                 <img className="h-380 object-cover " src="/video.png" />
-              </div>
+        {error && (
+          <div className="bg-red-200 text-red-800 px-4 py-2 rounded mt-4">
+            {error}
+          </div>
+        )}
+        <div className="mt-4 animate-slideTop">
+          <div
+            id="content-video"
+            className="border border-[#24BAB8] rounded-lg h-[360px] w-[640px]"
+          />
         </div>
-      </section>    
+      </div>
     </div>
-          )
-          }
+  );
+};
 
-export default VideoSearch;
+export default VideoSearchBar;

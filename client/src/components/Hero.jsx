@@ -46,7 +46,7 @@ const Hero = () => {
 
           <button 
             onClick={() => window.location = '/#searchType'}
-            className="bg-gradient-to-r from-[#66B0A5] to-[#100D25]  text-white py-3 px-8 rounded-full animate-slideTop w-[165px] h-[50px]  hover:bg-[#23c9b0]  transition-colors duration-300 ease-in-out">
+            className="bg-gradient-to-r from-[#66B0A5] to-[#100D25] hover:bg-[#23c9b0] transition-colors text-white py-3 px-8 rounded-full animate-slideTop w-[165px] h-[50px]   duration-300 ease-in-out">
           <Link href="/#searchType"  legacyBehavior>
             <a > Search Now ! </a>
           </Link>

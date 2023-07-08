@@ -38,7 +38,7 @@ export default function Search() {
     fetchResults
   );
   return (
-    <div className="bg-gradient-to-r from-[#050816] to-[#100D25]">
+    <div className="bg-gradient-to-r from-[#050816] to-[#100D25] min-h-screen">
       <Header />
       <Head>
         <title>Video Search</title>
