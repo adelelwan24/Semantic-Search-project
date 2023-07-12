@@ -33,12 +33,13 @@ export default function Search() {
 
   return (
     <div className="bg-gradient-to-r from-[#050816] to-[#100D25] min-h-screen">
+      <div>
       <Header />
       <Head>
         <title>Video Search</title>
       </Head>
 
-      <div className="bg-zinc-900 text-zinc-200 h-screen py-32 ">
+      <div className=" text-zinc-200  py-32 ">
         <div className="flex flex-col gap-10 items-center p-6 ">
           <VideosSearchBar />
 
@@ -61,6 +62,9 @@ export default function Search() {
               ))
             )}
           </div>
+          <div className="border border-teal-500 h-96 w-2/5">
+
+          </div>
           <button
             className={`hover:bg-[#0e9c7d] text-white font-bold py-2 px-4 rounded-full mt-8 flex items-center ${
               showMore ? "display" : ""
@@ -82,6 +86,7 @@ export default function Search() {
             </svg>
           </button>
         </div>
+      </div>
       </div>
     </div>
   );

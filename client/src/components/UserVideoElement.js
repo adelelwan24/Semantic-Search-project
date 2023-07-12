@@ -41,7 +41,7 @@ const UserVideoElement = ({ video_id }) => {
   };
 
   return (
-    <div className="w-full justify-center">
+    <div className="w-full justify-center ">
       <motion.div variants={fadeIn("right", "spring", 0.5, 0.75)}>
         <div className="px-28">
           <input
