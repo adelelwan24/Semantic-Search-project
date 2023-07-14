@@ -61,7 +61,7 @@ const VideoSearchBar = () => {
     <div className="bg-gradient-to-r from-[#050816] to-[#100D25] min-h-screen">
       <Header />
       {/* <h1 className=""> search in your videos</h1> */}
-      <div className="w-6/12 pl-5 pt-32 h-full">
+      <div className="  pt-32 px-96 ">
         <div className="flex animate-slideBottom ">
           <input
             type="text"
@@ -78,7 +78,7 @@ const VideoSearchBar = () => {
           </button>
         </div>
         {/* the video elemnt */}
-        <div className="h-5/6 rounded flex justify-center">
+        <div className="h-5/6 rounded flex justify-center ">
           {loadingVideo ? (
             <Spinner />
           ) : error ? (
@@ -88,6 +88,9 @@ const VideoSearchBar = () => {
           ) : (
             <></>
           )}
+        </div>
+        <div className="border border-teal-500 h-96 my-10">
+
         </div>
       </div>
     </div>

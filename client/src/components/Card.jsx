@@ -14,7 +14,7 @@ const Card = ({ name, job, image, linkedin, github, gmail }) => {
         <div
           className="bg-tertiary rounded-[20px] px-12 min-h-[450px] flex justify-evenly items-center flex-col"
         >
-          <img src={image} className="object-cover overflow-hidden rounded-2xl" alt={name} />
+          <img src={image} className="object-cover overflow-hidden rounded-2xl h-40 w-40" alt={name} />
           <h2 className="text-white text-[20px] font-bold text-center">{name}</h2>
           <hr className="w-20 h-1 mx-auto my-1 border-1 bg-yellow-400" />
           <h3 className="text-secondary text-[16px] font-bold text-center">{job}</h3>

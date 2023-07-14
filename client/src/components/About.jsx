@@ -17,45 +17,49 @@ export default function App() {
 
   const persons = [
     {
-      name: 'Ahmed Behairy',
-      job: 'Job 1',
-      image: '/person1.jpg',
+      name: 'Mohamed AbuElnasr',
+      job: 'AI Enginner',
+      image: '/AbuElnasr.jpg',
       linkedin: 'https://www.linkedin.com/',
       github: 'https://github.com/',
       gmail: 'a.behairy@gmail.com',
     },
     {
       name: "Adel Ma'mon",
-      job: 'Job 2',
-      image: '/person1.jpg',
+      job: 'AI Engineer',
+      image: '/Adel.png',
       linkedin: 'https://www.linkedin.com/',
       github: 'https://github.com/',
       gmail: 'a.behairy@gmail.com',
-    },{
-      name: 'Mohamed AbuElnasr',
-      job: 'Job 3',
-      image: '/person1.jpg',
+    },
+    {
+      name: 'Ahmed Behairy',
+      job: 'Front-End developer',
+      image: '/Behairy.jpg',
       linkedin: 'https://www.linkedin.com/',
       github: 'https://github.com/',
       gmail: 'a.behairy@gmail.com',
-    },{
-      name: 'Ibrahim Rabee',
-      job: 'Job 4',
-      image: '/person1.jpg',
+    },
+    {
+      name: 'Ibrahim REabea',
+      job: 'AI Engineer',
+      image: '/Rabee.jpg',
       linkedin: 'https://www.linkedin.com/',
       github: 'https://github.com/',
       gmail: 'a.behairy@gmail.com',
-    },{
+    },
+    {
       name: 'Mahmoud Hassanen',
-      job: 'Job 5',
-      image: '/person1.jpg',
+      job: 'Data Analyst',
+      image: '/Hassanen.jpg',
       linkedin: 'https://www.linkedin.com/',
       github: 'https://github.com/',
       gmail: 'a.behairy@gmail.com',
-    },{
+    },
+    {
       name: 'Mohamed Ammar',
-      job: 'Job 6',
-      image: '/person1.jpg',
+      job: 'machine learning engineer',
+      image: '/Ammar.jpg',
       linkedin: 'https://www.linkedin.com/',
       github: 'https://github.com/',
       gmail: 'a.behairy@gmail.com',
@@ -91,7 +95,7 @@ export default function App() {
         className="mySwiper  animate-zoomIn ml-10 "
       >
         {persons.map((person, index) => (
-        <SwiperSlide key={index}>
+        <SwiperSlide key={index} className='ml-6'>
           <Card {...person} />
         </SwiperSlide>
       ))}
