@@ -59,12 +59,14 @@ module.exports = {
         },
       },
       animation: {
+        
         slideRight: 'slideRight 1s ease-in-out',
         slideLeft: 'slideLeft 1s ease-in-out',
         slideBottom: 'slideBottom 1s ease-in-out',
         slideTop: 'slideTop 1s ease-in-out',
         zoomIn: 'zoomIn 1s ease-in-out',
         floatImage: ' 4s ease-in-out  infinite'
+
       },
     },
   },
