@@ -34,59 +34,56 @@ export default function Search() {
   return (
     <div className="bg-gradient-to-r from-[#050816] to-[#100D25] min-h-screen">
       <div>
-      <Header />
-      <Head>
-        <title>Video Search</title>
-      </Head>
+        <Header />
+        <Head>
+          <title>Video Search</title>
+        </Head>
 
-      <div className=" text-zinc-200  py-32 ">
-        <div className="flex flex-col gap-10 items-center p-6 ">
-          <VideosSearchBar />
+        <div className=" text-zinc-200  py-24 ">
+          <div className="flex flex-col gap-10 items-center p-6 ">
+            <VideosSearchBar />
 
-          <div className="flex flex-col items-center w-full">
-            {Query === null || Query === "" ? (
-              <></>
-            ) : isLoading ? (
-              <Spinner />
-            ) : error ? (
-              <>Server Not Working</>
-            ) : (
-              data.map((ele) => (
-                <div key={ele.id}>
-                  <VideoElement
-                    video_id={ele.video_id}
-                    start={ele.start_time}
-                    text={ele.text}
-                  />
-                </div>
-              ))
-            )}
-          </div>
-          <div className="border border-teal-500 h-96 w-2/5">
-
-          </div>
-          <button
-            className={`hover:bg-[#0e9c7d] text-white font-bold py-2 px-4 rounded-full mt-8 flex items-center ${
-              showMore ? "display" : ""
-            }`}
-            onClick={handleShowMore}
-          >
-            Show More
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 inline-block ml-2"
-              viewBox="0 0 20 20"
-              fill="currentColor"
+            <div className="flex flex-col items-center w-full">
+              {Query === null || Query === "" ? (
+                <></>
+              ) : isLoading ? (
+                <Spinner />
+              ) : error ? (
+                <>Server Not Working</>
+              ) : (
+                data.map((ele) => (
+                  <div key={ele.id}>
+                    <VideoElement
+                      video_id={ele.video_id}
+                      start={ele.start_time}
+                      text={ele.text}
+                    />
+                  </div>
+                ))
+              )}
+            </div>
+            {/* <button
+              className={`hover:bg-[#0e9c7d] text-white font-bold py-2 px-4 rounded-full mt-8 flex items-center ${
+                showMore ? "display" : ""
+              }`}
+              onClick={handleShowMore}
             >
-              <path
-                fillRule="evenodd"
-                d="M10 14a.75.75 0 01-.53-.22L5.47 9.53a.75.75 0 111.06-1.06L10 11.94l3.47-3.47a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-.53.22z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </button>
+              Show More
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 inline-block ml-2"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 14a.75.75 0 01-.53-.22L5.47 9.53a.75.75 0 111.06-1.06L10 11.94l3.47-3.47a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-.53.22z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button> */}
+          </div>
         </div>
-      </div>
       </div>
     </div>
   );
