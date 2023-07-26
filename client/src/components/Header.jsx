@@ -33,15 +33,15 @@ const Header = () => {
       }`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto ">
-      <Link href="/" legacyBehavior >
-        <div className="flex items-center gap-2 cursor-pointer animate-slideRight">
-          <img src="/logo-white.svg" alt="Logo" className="w-8 h-8 mr-2" />
-          <p className="text-xl font-bold ">
-            <span className="">Search Mate</span>
-          </p>
-        </div>
-      </Link>
-        <ul className="list-none hidden sm:flex flex-row justify-center gap-10 " >
+        <Link href="/" legacyBehavior>
+          <div className="flex items-center gap-2 cursor-pointer animate-slideRight">
+            <img src="/logo-white.svg" alt="Logo" className="w-8 h-8 mr-2" />
+            <p className="text-xl font-bold ">
+              <span className="">Search Mate</span>
+            </p>
+          </div>
+        </Link>
+        <ul className="list-none hidden sm:flex flex-row justify-center gap-10 ">
           <li
             className={`${
               active === "home" ? "text-white" : "text-secondary"
@@ -53,18 +53,18 @@ const Header = () => {
             </Link>
           </li>
           {navLinks.map((link) => (
-              <li
-                key={link.id}
-                className={`${
-                  active === link.title ? "text-white" : "text-secondary" 
-                }  hover:text-[#1ebea6] text-[18px] hover:scale-125 animate-slideTop animation-delay-500 font-medium cursor-pointer `}
-                onClick={() => setActive(link.title)}
-              >
-                <Link href={`/#${link.id}`} legacyBehavior>
-                  <a>{link.title}</a>
-                </Link>
-              </li>
-              ))}
+            <li
+              key={link.id}
+              className={`${
+                active === link.title ? "text-white" : "text-secondary"
+              }  hover:text-[#1ebea6] text-[18px] hover:scale-125 animate-slideTop animation-delay-500 font-medium cursor-pointer `}
+              onClick={() => setActive(link.title)}
+            >
+              <Link href={`/#${link.id}`} legacyBehavior>
+                <a>{link.title}</a>
+              </Link>
+            </li>
+          ))}
         </ul>
 
         <div className="hidden sm:flex  items-center gap-6">
@@ -78,18 +78,18 @@ const Header = () => {
               <a>Log In</a>
             </Link>
           </button>
-            <Link href="/SignUp" legacyBehavior>
+          <Link href="/SignUp" legacyBehavior>
             <button
-              className="bg-[#24BAB8] hover:bg-gradient-to-r from-[#66B0A5] to-[#100D25] transition-colors duration-300 ease-in-out text-white text-[18px] animate-slideLeft font-medium py-2 px-6 rounded-full"
+              className="bg-[#0e9c7d] hover:bg-[#0a5344] transition-colors duration-300 ease-in-out text-white text-[18px] animate-slideLeft font-medium py-2 px-6 rounded-full"
               onClick={() => setActive("signup")}
             >
               <a>Sign Up</a>
             </button>
-            </Link>
+          </Link>
         </div>
 
         {/* navbar for small devices  */}
-        
+
         <div className="sm:hidden flex flex-1 justify-end items-center">
           <img
             src="{toggle ? /close.svg:/menu.svg}"
@@ -97,10 +97,8 @@ const Header = () => {
             className="w-[28px] h-[28px] object-contain cursor-pointer"
             onClick={() => setToggle(!toggle)}
           />
-          <div className="{`${!toggle ? 'hidden' : 'flex'} p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl `}"
-            
-          >
-              <ul className="list-none flex   justify-end items-start flex-col gap-4 " >
+          <div className="{`${!toggle ? 'hidden' : 'flex'} p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl `}">
+            <ul className="list-none flex   justify-end items-start flex-col gap-4 ">
               <li
                 className={`${
                   active === "home" ? "text-white" : "text-secondary"
@@ -112,20 +110,20 @@ const Header = () => {
                 </Link>
               </li>
               {navLinks.map((link) => (
-              <li
-                key={link.id}
-                className={`${
-                  active === link.title ? "text-white" : "text-secondary"
-                } font-poppins text-[16px] font-medium cursor-pointer`}
-                onClick={() => {
-                  setToggle(!toggle);
-                  setActive(link.title);}
-                }
-              >
-                <Link href={`/#${link.id}`} legacyBehavior>
-                  <a>{link.title}</a>
-                </Link>
-              </li>
+                <li
+                  key={link.id}
+                  className={`${
+                    active === link.title ? "text-white" : "text-secondary"
+                  } font-poppins text-[16px] font-medium cursor-pointer`}
+                  onClick={() => {
+                    setToggle(!toggle);
+                    setActive(link.title);
+                  }}
+                >
+                  <Link href={`/#${link.id}`} legacyBehavior>
+                    <a>{link.title}</a>
+                  </Link>
+                </li>
               ))}
             </ul>
 
@@ -146,12 +144,12 @@ const Header = () => {
                 } hover:text-white text-[18px] font-medium cursor-pointer `}
                 onClick={() => setActive("SignUp")}
               >
-                <Link legacyBehavior href="/SignUp" >
+                <Link legacyBehavior href="/SignUp">
                   <a>Sign Up </a>
                 </Link>
               </button>
             </div>
-              </div>
+          </div>
         </div>
       </div>
     </nav>

@@ -38,7 +38,7 @@ export default function Search() {
         <title>Paper Search</title>
       </Head>
 
-      <div className=" text-zinc-200  py-32 ">
+      <div className=" text-zinc-200  py-24 ">
         <div className="flex flex-col gap-10 items-center p-6 ">
           <PapersSearchBar />
 
@@ -61,10 +61,7 @@ export default function Search() {
               ))
             )}
           </div>
-          <div className="border border-teal-500 h-96 w-2/5">
-
-          </div>
-          <button
+          {/* <button
             className={`hover:bg-[#0e9c7d] text-white font-bold py-2 px-4 rounded-full mt-8 flex items-center ${
               showMore ? "display" : ""
             }`}
@@ -83,7 +80,7 @@ export default function Search() {
                 clipRule="evenodd"
               />
             </svg>
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
