@@ -12,7 +12,7 @@ const VideoSearchBar = () => {
 
   const delete_token = async (token) => {
     try {
-      let response = await fetch("http://127.0.0.1:5001/removeindex", {
+      let response = await fetch("http://127.0.0.1:5000/uservideo/delete", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const VideoSearchBar = () => {
     }
     setLoadingVideo(true);
     try {
-      let response = await fetch("http://127.0.0.1:5001/storevideo", {
+      let response = await fetch("http://127.0.0.1:5000/uservideo/store", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
