@@ -13,3 +13,5 @@ python-jose==3.3.0
 redis==4.6.0
 sentence-transformers==2.2.2
 yarg==0.1.9
+hnswlib
+youtube-transcript-api
