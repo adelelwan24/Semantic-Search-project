@@ -1,8 +1,8 @@
-# Semantic-Search-Project
+# **Semantic Search Engine** to search in **_videos_** based on **_([SBERT][SBERT])_**
 
 <div align="center">
 
-**Semantic Search Engine** to search in **_videos_** based on **_([SBERT][SBERT])_**
+
 
 [SBERT]: https://sbert.net/
 
