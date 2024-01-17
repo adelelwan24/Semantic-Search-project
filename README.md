@@ -9,7 +9,7 @@
 ![Main Character](https://github.com/adelelwan24/Semantic-Search-project/blob/main/client/src/assets/main_page.png?raw=true)
 </div>
 
-## Goal
+## Goals
 is to simplify the process of searching through videos by utilizing semantic search technology, specifically the SBERT model.  
 We want to make it easier for users to find the specific information they need within a video, without having to watch the entire video or listen to the whole podcast.  
 By using semantic search technology, our project aims to improve the efficiency of searching through videos, particularly for educational purposes.  
