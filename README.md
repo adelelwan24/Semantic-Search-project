@@ -4,10 +4,15 @@
 
 
 
-[SBERT]: https://sbert.net/
+[SBERT]: https://sbert.net/  
+[![Youtube Badge](https://img.shields.io/badge/-Youtube-red?style=flat&logo=Youtube&logoColor=white)](https://www.youtube.com/watch?v=8-sie8-GVLU)
+
 
 ![Main Character](https://github.com/adelelwan24/Semantic-Search-project/blob/main/client/src/assets/main_page.png?raw=true)
 </div>
+
+## Demo
+https://github.com/adelelwan24/Semantic-Search-project/assets/72202195/cb0a3074-9812-4d23-a2ad-5cbd500e5a5d
 
 ## Goals
 is to simplify the process of searching through videos by utilizing semantic search technology, specifically the SBERT model.  
