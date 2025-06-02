@@ -1,65 +1,95 @@
-# **Semantic Search Engine** to search in **_videos_** based on **_([SBERT][SBERT])_**
+# **Semantic Search Engine** for ***Video Content*** Powered by **[SBERT](https://sbert.net/)**
 
 <div align="center">
 
+[![YouTube Badge](https://img.shields.io/badge/-YouTube-red?style=flat\&logo=YouTube\&logoColor=white)](https://www.youtube.com/watch?v=8-sie8-GVLU)
 
+![Main Interface](https://github.com/adelelwan24/Semantic-Search-project/blob/main/client/src/assets/main_page.png?raw=true)
 
-[SBERT]: https://sbert.net/  
-[![Youtube Badge](https://img.shields.io/badge/-Youtube-red?style=flat&logo=Youtube&logoColor=white)](https://www.youtube.com/watch?v=8-sie8-GVLU)
-
-
-![Main Character](https://github.com/adelelwan24/Semantic-Search-project/blob/main/client/src/assets/main_page.png?raw=true)
 </div>
 
-## Demo
-https://github.com/adelelwan24/Semantic-Search-project/assets/72202195/cb0a3074-9812-4d23-a2ad-5cbd500e5a5d
+---
 
-## Goals
-is to simplify the process of searching through videos by utilizing semantic search technology, specifically the SBERT model.  
-We want to make it easier for users to find the specific information they need within a video, without having to watch the entire video or listen to the whole podcast.  
-By using semantic search technology, our project aims to improve the efficiency of searching through videos, particularly for educational purposes.  
-This will save users time and make it easier for them to find the information they need, ultimately improving their overall experience.  
-We believe that our project will be particularly beneficial for students and educators who need to find specific information within educational videos. By simplifying the search process, we aim to improve the accessibility and quality of education for students and educators alike.  <br>
+## 🚀 Demo
 
-**Overall**, the aim of our project is to make searching for relevant video content more efficient and effective, ultimately improving the overall learning experience for users.
+Watch the demo here:
+[https://github.com/adelelwan24/Semantic-Search-project/assets/72202195/cb0a3074-9812-4d23-a2ad-5cbd500e5a5d](https://github.com/adelelwan24/Semantic-Search-project/assets/72202195/cb0a3074-9812-4d23-a2ad-5cbd500e5a5d)
 
-## Features
--	**Powerful search functionality**:  
-  Our project provides a powerful search functionality that allows users to find and access relevant information within videos.  
-  By utilizing a variety of techniques and methods, we have been able to significantly improve the accuracy and relevance of search results.
--	**Flexible search options**:  
-   Our search functionality offers users a range of flexible search options, including keyword-based search, phrase-based search, and advanced search filters.  
-   This makes it easier for users to find the information they need within a video.
-- **Transcript visualization**:  
-  Our project includes a user-friendly transcript visualization feature that allows users to quickly navigate through the video transcript and find the information they need.  
-  The transcript visualization feature includes timestamps, which helps users quickly identify the relevant sections of the transcript.
--	**Video previews**:  
-  Our project allows users to preview video content before watching it.  
-  This is particularly useful for users who are looking for specific information within a video and want to quickly identify whether the video is relevant to their needs.
--	**Responsive design**:  
-  Our project is designed to be responsive and accessible across a range of devices, including desktops, laptops, tablets, and smartphones.  
-  This makes it easy for users to access the information they need, wherever they are.
--	**Secure user authentication**:  
-  Our project includes a secure user authentication system that ensures user data is protected and secure.  
-  This is particularly important for users who are sharing sensitive or confidential information within the video platform.
+---
 
-## Results
+## 🎯 Project Goal
 
+The aim of this project is to simplify the process of searching **within videos** by leveraging **semantic search** using the **SBERT** model. Rather than requiring users to watch an entire video or listen to a full podcast, we allow them to **search semantically** for the exact segment they need.
 
-### *Datasets*
-We created 2 datasets for Information retrieval systems based on the <mark>domain of Artificial Intelegence</mark>.
-The datasets are derived from the ArXiv dataset which contains research papers in many fields, but we filtered it to the domain of computer science (Artificial intelligence).
+Our target users include **students**, **educators**, and **researchers**, especially those interacting with educational content. By enabling efficient and intelligent search, we aim to enhance the **learning experience**, increase **accessibility**, and save valuable time.
 
-The datasets are uploaded to Kaggle and Hugging Face:
-- Title-based. [Kaggle](https://kaggle.com/datasets/229a8ef9359c40ac1ca607b3d1d9b5580c2ba8e8334ba21b2b6f7f3c17a58dce)  | [Hugging Face](https://huggingface.co/datasets/Adel-Elwan/Artificial-intelligence-dataset-for-IR-systems/tree/main)
-- synthetic query-based. [Kaggle](https://kaggle.com/datasets/600982a85d3cbaf1371998c52ce2a45bb8aca875f5ad3b38ee1ef22d1dd186d8)
+---
 
+## 🔍 Key Features
 
-### *Models*
-We used the datasets to train our model on the domain of AI, to create 2 models on the 2 datasets.
-The model trained on title based dataset has the best results on the datasets compared to the base model and the other model.
+* ### **Advanced Semantic Search**
 
-The model is uploaded on Hugging Face. [Model](https://huggingface.co/Adel-Elwan/msmarco-bert-base-dot-v5-fine-tuned-AI)
+  Built using SBERT, our system delivers highly relevant search results based on meaning, not just keywords.
+
+* ### **Flexible Search Options**
+
+  Includes support for:
+
+  * Keyword search
+  * Phrase-based queries
+  * Advanced filters to refine results
+
+* ### **Interactive Transcript Navigation**
+
+  Users can browse transcripts with synchronized **timestamps**, enabling fast location of the desired video snippet.
+
+* ### **Video Preview**
+
+  Users can preview video segments before watching, making it easier to verify relevance.
+
+* ### **Responsive UI**
+
+  The interface is fully responsive and works seamlessly across desktop, tablet, and mobile devices.
+
+* ### **Secure Authentication**
+
+  Robust user authentication system ensures data privacy and protection for all users.
+
+---
+
+## 📊 Results
+
+### 🗂 Datasets
+
+We curated two specialized datasets from the ArXiv research archive, focusing on the **Artificial Intelligence** domain within computer science:
+
+* **Title-based dataset**
+
+  * 📁 [Kaggle](https://kaggle.com/datasets/229a8ef9359c40ac1ca607b3d1d9b5580c2ba8e8334ba21b2b6f7f3c17a58dce)
+  * 🤗 [Hugging Face](https://huggingface.co/datasets/Adel-Elwan/Artificial-intelligence-dataset-for-IR-systems/tree/main)
+
+* **Synthetic query-based dataset**
+
+  * 📁 [Kaggle](https://kaggle.com/datasets/600982a85d3cbaf1371998c52ce2a45bb8aca875f5ad3b38ee1ef22d1dd186d8)
+
+---
+
+### 🤖 Models
+
+We fine-tuned two models on our AI-specific datasets. The model trained on the **title-based dataset** achieved the best performance in semantic relevance and search accuracy.
+
+* 🔗 [Fine-tuned Model on Hugging Face](https://huggingface.co/Adel-Elwan/msmarco-bert-base-dot-v5-fine-tuned-AI)
+
+---
+
+## 🧠 Conclusion
+
+This project significantly enhances the way users interact with video content—especially in academic settings—by introducing **intelligent semantic search**. Whether you're studying, teaching, or researching, this tool makes it easier to **find what matters most**, quickly and efficiently.
+
+---
+
+Let me know if you’d like a version formatted for a GitHub README, a website landing page, or technical documentation!
+
 
 ### *Training Results*
 
@@ -85,7 +115,5 @@ The model is uploaded on Hugging Face. [Model](https://huggingface.co/Adel-Elwan
 | **NDCG@100**      	|             0.7858            	| 0.7139 	|             0.597             	| 0.5688 	|
 
 
-<!-- ## Future Plans -->
-
----
 <h1 align="center" style='font-size:40px'>Thanks</h1>
+
