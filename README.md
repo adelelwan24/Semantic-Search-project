@@ -12,8 +12,7 @@
 
 ## 🚀 Demo
 
-Watch the demo here:
-[https://github.com/adelelwan24/Semantic-Search-project/assets/72202195/cb0a3074-9812-4d23-a2ad-5cbd500e5a5d](https://github.com/adelelwan24/Semantic-Search-project/assets/72202195/cb0a3074-9812-4d23-a2ad-5cbd500e5a5d)
+https://github.com/adelelwan24/Semantic-Search-project/assets/72202195/cb0a3074-9812-4d23-a2ad-5cbd500e5a5d
 
 ---
 
